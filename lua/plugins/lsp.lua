@@ -78,45 +78,46 @@ return {
 			servers = {
 				jsonls = {},
 				tsserver = {
-					enabled = false,
-					-- filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+					enabled = true,
+					filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 				},
 				-- ------------TYPESCRIPT
 				vtsls = {
-					filetypes = {
-						"javascript",
-						"javascriptreact",
-						"javascript.jsx",
-						"typescript",
-						"typescriptreact",
-						"typescript.tsx",
-					},
-					settings = {
-						complete_function_calls = true,
-						vtsls = {
-							enableMoveToFileCodeAction = true,
-							autoUseWorkspaceTsdk = true,
-							experimental = {
-								completion = {
-									enableServerSideFuzzyMatch = true,
-								},
-							},
-						},
-						typescript = {
-							updateImportsOnFileMove = { enabled = "always" },
-							suggest = {
-								completeFunctionCalls = true,
-							},
-							inlayHints = {
-								enumMemberValues = { enabled = true },
-								functionLikeReturnTypes = { enabled = true },
-								parameterNames = { enabled = "literals" },
-								parameterTypes = { enabled = true },
-								propertyDeclarationTypes = { enabled = true },
-								variableTypes = { enabled = false },
-							},
-						},
-					},
+          enabled = false
+					-- filetypes = {
+					-- 	"javascript",
+					-- 	"javascriptreact",
+					-- 	"javascript.jsx",
+					-- 	"typescript",
+					-- 	"typescriptreact",
+					-- 	"typescript.tsx",
+					-- },
+					-- settings = {
+					-- 	complete_function_calls = true,
+					-- 	vtsls = {
+					-- 		enableMoveToFileCodeAction = true,
+					-- 		autoUseWorkspaceTsdk = true,
+					-- 		experimental = {
+					-- 			completion = {
+					-- 				enableServerSideFuzzyMatch = true,
+					-- 			},
+					-- 		},
+					-- 	},
+					-- 	typescript = {
+					-- 		updateImportsOnFileMove = { enabled = "always" },
+					-- 		suggest = {
+					-- 			completeFunctionCalls = true,
+					-- 		},
+					-- 		inlayHints = {
+					-- 			enumMemberValues = { enabled = true },
+					-- 			functionLikeReturnTypes = { enabled = true },
+					-- 			parameterNames = { enabled = "literals" },
+					-- 			parameterTypes = { enabled = true },
+					-- 			propertyDeclarationTypes = { enabled = true },
+					-- 			variableTypes = { enabled = false },
+					-- 		},
+					-- 	},
+					-- },
 				},
 				-- ------------/TYPESCRIPT
 				dockerls = {},
@@ -131,7 +132,7 @@ return {
 			setup = {
 				tsserver = function()
 					-- disable tsserver
-					return false
+          require'lspconfig'.tsserver.setup{}
 				end,
         vtsls = function(_, opts)
           require'lspconfig'.vtsls.setup{}
