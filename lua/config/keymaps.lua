@@ -9,6 +9,7 @@
 -- File: config/keymaps.lua
 -- Description: Key mapping configs
 -- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
+local utils = require("config/utils")
 -- Close all windows and exit from Neovim with <leader> and q
 vim.keymap.set("n", "<leader>q", ":qa!<CR>", {})
 -- Fast saving with <leader> and s
@@ -18,15 +19,11 @@ vim.keymap.set("n", "<leader>wh", "<C-w>h", {})
 vim.keymap.set("n", "<leader>wj", "<C-w>j", {})
 vim.keymap.set("n", "<leader>wk", "<C-w>k", {})
 vim.keymap.set("n", "<leader>wl", "<C-w>l", {})
-
 -- Reload configuration without restart nvim
 vim.keymap.set("n", "<leader>r", ":so %<CR>", {})
-
 -- Telescope
--- <leader> is a space now
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
--- vim.keymap.set("n", "<leader>fF", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 -- vim.keymap.set("n", "<leader>fG", require("telescope.builtin").resume, {
 --   noremap = true,
@@ -35,20 +32,11 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 -- })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-
--- NvimTree
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {}) -- open/close
 vim.keymap.set("n", "<leader>nr", ":NvimTreeRefresh<CR>", {}) -- refresh
 vim.keymap.set("n", "<leader>E", ":NvimTreeFindFile<CR>", {}) -- search file
-
--- Terminal
--- vim.keymap.set("n", "<leader>tt", ":NeotermToggle<CR>", {})
--- vim.keymap.set("n", "<leader>tx", ":NeotermExit<CR>", {})
-
 vim.keymap.set("n", "<leader>cf", "<cmd>Format<cr>", { noremap = true, silent = true })
-
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
-
 vim.keymap.set("n", "<leader>t", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-L>", "<cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
@@ -59,30 +47,38 @@ vim.keymap.set("n", "<C-S-H>", "<cmd>BufferLineMovePrev<CR>", { noremap = true, 
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>bP', utils.close_unpinned_buffers, {noremap = true, silent = true, desc = "Close unpinned buffers"})
+vim.keymap.set("n", "<leader>bco", "<cmd>BufferLineCloseOthers<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>ud", ":silent :ToggleDiag<cr>", { desc = "Toggle Diagnostics" })
 vim.keymap.set("n", "<Esc>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
-
 vim.keymap.set("n", "<C-[>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
-vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
-	desc = "Toggle Spectre",
-})
-vim.keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-	desc = "Search current word",
-})
-vim.keymap.set("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-	desc = "Search current word",
-})
-vim.keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-	desc = "Search on current file",
-})
+vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
+vim.keymap.set(
+	"n",
+	"<leader>sw",
+	'<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+	{ desc = "Search current word" }
+)
+vim.keymap.set(
+	"v",
+	"<leader>sw",
+	'<esc><cmd>lua require("spectre").open_visual()<CR>',
+	{ desc = "Search current word" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>sp",
+	'<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+	{ desc = "Search on current file" }
+)
 vim.keymap.set("n", "<leader>qq", "<cmd>qa!<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" }) -- show definition, references
--- vim.keymap.set("n", "gd", vim.lsp.buf.declaration, { desc = "Go to declaration" }) -- go to declaration
 -- vim.keymap.set("n", "gd", vim.lsp.buf.declaration, { desc = "Go to declaration" }) -- go to declaration
 vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" }) -- show lsp definitions
 vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementations" }) -- show lsp implementations
@@ -94,4 +90,6 @@ vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line 
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" }) -- jump to previous diagnostic in buffer
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" }) -- jump to next diagnostic in buffer
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
-vim.keymap.set("n", "<leader>lr", ":silent! LspRestart<CR>", { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
+vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP servers silently" })
+vim.keymap.set("n", "<c-/>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
+vim.keymap.set("t", "<c-/>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })

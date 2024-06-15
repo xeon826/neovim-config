@@ -46,7 +46,7 @@ autocmd("BufEnter", {
 })
 
 autocmd("Filetype", {
-  pattern = { "xml", "html", "xhtml", "css", "scss", "javascript", "typescript", "yaml", "lua" },
+  pattern = { "xml", "html", "xhtml", "css", "scss", "javascript", "typescript", 'typescriptreact', 'javascriptreact', "yaml", "lua" },
   command = "setlocal shiftwidth=2 tabstop=2"
 })
 

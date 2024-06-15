@@ -11,13 +11,8 @@
 -- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
 return {{
     -- Floating terminal
-    "itmecho/neoterm.nvim",
-    opts = {
-        clear_on_run = true, -- run clear command before user specified commands
-        mode = "horizontal", -- vertical/horizontal/fullscreen
-        noinsert = false -- disable entering insert mode when opening the neoterm window
-    },
+    "voldikss/vim-floaterm",
     config = function(_, opts)
-        require("neoterm").setup(opts)
+        vim.g.floaterm_title = "Floaterm"
     end
 }}
