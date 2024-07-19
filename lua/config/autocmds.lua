@@ -26,11 +26,20 @@ autocmd("TextYankPost", {
   end
 })
 
--- Remove whitespace on save
-autocmd("BufWritePre", {
-  pattern = "",
-  command = ":%s/\\s\\+$//e"
+autocmd({ "BufWritePost", "BufReadPost" }, {
+  callback = function()
+
+    -- try_lint without arguments runs the linters defined in `linters_by_ft`
+    -- for the current filetype
+    require("lint").try_lint()
+  end,
 })
+
+-- Remove whitespace on save
+-- autocmd("BufWritePre", {
+--   pattern = "",
+--   command = ":%s/\\s\\+$//e"
+-- })
 
 -- Auto format on save using the attached (optionally filtered) language servere clients
 -- https://neovim.io/doc/user/lsp.html#vim.lsp.buf.format()

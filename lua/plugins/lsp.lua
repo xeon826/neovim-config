@@ -83,7 +83,7 @@ return {
 				},
 				-- ------------TYPESCRIPT
 				vtsls = {
-          enabled = false
+					enabled = false,
 					-- filetypes = {
 					-- 	"javascript",
 					-- 	"javascriptreact",
@@ -124,6 +124,36 @@ return {
 				bashls = {},
 				-- gopls = {},
 				ruff_lsp = {},
+				pylsp = {
+					enabled = true,
+					settings = {
+						pylsp = {
+							configurationSources = {},
+							plugins = {
+								pycodestyle = { enabled = false },
+								flake8 = { enabled = false },
+								mypy = { enabled = false },
+								pylint = { enabled = false },
+								pydocstyle = { enabled = false },
+								yapf = { enabled = false },
+								autopep8 = { enabled = false },
+								pyflakes = { enabled = false },
+								mccabe = { enabled = false },
+								preload = { enabled = false },
+								rope = { enabled = false },
+								pylsp_mypy = { enabled = false },
+							},
+						},
+					},
+					on_attach = function(client, bufnr)
+						-- Disable unnecessary capabilities
+						client.server_capabilities.documentFormattingProvider = false
+						client.server_capabilities.documentRangeFormattingProvider = false
+						client.server_capabilities.hoverProvider = false
+						client.server_capabilities.signatureHelpProvider = false
+						client.server_capabilities.codeActionProvider = false
+					end,
+				},
 				vimls = {},
 				yamlls = {},
 			},
@@ -132,12 +162,12 @@ return {
 			setup = {
 				tsserver = function()
 					-- disable tsserver
-          require'lspconfig'.tsserver.setup{}
+					require("lspconfig").tsserver.setup({})
 				end,
-        vtsls = function(_, opts)
-          require'lspconfig'.vtsls.setup{}
-          return false
-        end
+				vtsls = function(_, opts)
+					require("lspconfig").vtsls.setup({})
+					return false
+				end,
 				-- example to setup with typescript.nvim
 				-- tsserver = function(_, opts)
 				-- 	require("typescript").setup({

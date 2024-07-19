@@ -25,16 +25,18 @@ vim.keymap.set("n", "<leader>r", ":so %<CR>", {})
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
--- vim.keymap.set("n", "<leader>fG", require("telescope.builtin").resume, {
---   noremap = true,
---   silent = true,
---   desc = "Resume",
--- })
+vim.keymap.set("n", "<leader>fr", require("telescope.builtin").resume, {
+  noremap = true,
+  silent = true,
+  desc = "Resume",
+})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {}) -- open/close
+vim.keymap.set("n", "<leader>ae", ":AnsiEsc<CR>", {}) -- open/close
 vim.keymap.set("n", "<leader>nr", ":NvimTreeRefresh<CR>", {}) -- refresh
 vim.keymap.set("n", "<leader>E", ":NvimTreeFindFile<CR>", {}) -- search file
+vim.keymap.set("n", "<leader>c", ":NvimTreeCollapse<CR>", {}) -- search file
 vim.keymap.set("n", "<leader>cf", "<cmd>Format<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>t", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
@@ -44,12 +46,13 @@ vim.keymap.set("n", "<C-S-H>", "<cmd>BufferLineMovePrev<CR>", { noremap = true, 
 vim.keymap.set("n", "<leader>gch", "<cmd>Telescope git_bcommits<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-L>", "<cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-H>", "<cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', '<Leader>bP', utils.close_unpinned_buffers, {noremap = true, silent = true, desc = "Close unpinned buffers"})
-vim.keymap.set("n", "<leader>bco", "<cmd>BufferLineCloseOthers<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>bcu', utils.close_unpinned_buffers, {noremap = true, silent = true, desc = "Close unpinned buffers"})
+vim.keymap.set("n", "<leader>bco", "<cmd>BufferLineCloseOthers<CR>", { noremap = true, silent = true, desc = "Close all aside from open buffer." })
+vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>ud", ":silent :ToggleDiag<cr>", { desc = "Toggle Diagnostics" })
 vim.keymap.set("n", "<Esc>", function()
@@ -84,12 +87,24 @@ vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show L
 vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementations" }) -- show lsp implementations
 vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Show LSP type definitions" }) -- show lsp type definitions
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" }) -- see available code actions, in visual mode will apply to selection
-vim.keymap.set("n", "gr", vim.lsp.buf.rename, { desc = "Smart rename" }) -- smart rename
-vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" }) -- show  diagnostics for file
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line diagnostics" }) -- show diagnostics for line
+vim.keymap.set("n", "<leader>gr", vim.lsp.buf.rename, { desc = "Smart rename" }) -- smart rename
+vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" }) -- show  diagnostics for file
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" }) -- jump to previous diagnostic in buffer
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" }) -- jump to next diagnostic in buffer
+vim.keymap.set("n", "[D", function()
+    vim.diagnostic.goto_prev({
+        severity = vim.diagnostic.severity.ERROR,
+        desc = "Go to previous diagnostic with error severity"
+    })
+end, { desc = "Go to previous error" })
+vim.keymap.set("n", "]D", function()
+    vim.diagnostic.goto_next({
+        severity = vim.diagnostic.severity.ERROR,
+        desc = "Go to next diagnostic with error severity"
+    })
+end, { desc = "Go to next error" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
 vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP servers silently" })
-vim.keymap.set("n", "<c-/>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
-vim.keymap.set("t", "<c-/>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
+vim.keymap.set({"n", "t"}, "<c-/>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
+vim.api.nvim_del_keymap('n', 'm')
+vim.keymap.set("n", "m", "m", { desc = "mark" })
