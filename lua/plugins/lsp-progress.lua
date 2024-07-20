@@ -23,7 +23,7 @@ return {
         local lsp_sign = " LSP(s):"
 
         local lsp_clients = vim.lsp.get_active_clients()
-        local linters = require('lint').get_running()
+        local linters = require("lint").get_running()
         local combined_clients = {}
 
         -- Add LSP clients to the combined list
@@ -48,26 +48,34 @@ return {
           local builder = {}
           local linter_added = false
           local lsp_added = false
+          local last_linter_index = #linters
+          local last_lsp_index = #lsp_clients
 
-          for _, cli in ipairs(combined_clients) do
+          for i, cli in ipairs(combined_clients) do
             if type(cli) == "table" and type(cli.name) == "string" and string.len(cli.name) > 0 then
               if cli.type == "linter" and not linter_added then
                 table.insert(builder, linter_sign)
                 linter_added = true
-              end
-              if cli.type == "lsp" and not lsp_added then
+              elseif cli.type == "lsp" and not lsp_added then
                 table.insert(builder, lsp_sign)
                 lsp_added = true
               end
+
+              local name_with_message = cli.name
               if messages_map[cli.name] then
-                table.insert(builder, stringify(cli.name, messages_map[cli.name]))
+                name_with_message = stringify(cli.name, messages_map[cli.name])
+              end
+
+              -- Determine if a comma is needed
+              if (cli.type == "linter" and i < last_linter_index) or (cli.type == "lsp" and i < last_lsp_index + last_linter_index) then
+                table.insert(builder, name_with_message .. ",")
               else
-                table.insert(builder, stringify(cli.name))
+                table.insert(builder, name_with_message)
               end
             end
           end
           if #builder > 0 then
-            return table.concat(builder, ", ")
+            return table.concat(builder, " ")
           end
         end
         return ""
