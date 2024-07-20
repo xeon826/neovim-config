@@ -55,6 +55,7 @@ vim.keymap.set("n", "<leader>bco", "<cmd>BufferLineCloseOthers<CR>", { noremap =
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>ud", ":silent :ToggleDiag<cr>", { desc = "Toggle Diagnostics" })
+vim.keymap.set("n", "<leader>ti", "A # type: ignore<esc>", { desc = "Insert mypy type ignore at end of line" })
 vim.keymap.set("n", "<Esc>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
