@@ -20,21 +20,6 @@ return {
 			local lualine_require = require("lualine_require")
 
 			function loadcolors()
-				-- Rose-pine palette
-				-- local rosepine = require("oxocarbon.palette")
-				-- local colors = {
-				--     bg = rosepine.base,
-				--     fg = rosepine.text,
-				--     yellow = rosepine.gold,
-				--     cyan = rosepine.foam,
-				--     black = rosepine.subtled,
-				--     green = rosepine.pine,
-				--     white = rosepine.text,
-				--     magenta = rosepine.iris,
-				--     blue = rosepine.rose,
-				--     red = rosepine.love
-				-- }
-
 				-- Try to load pywal colors
 				local modules = lualine_require.lazy_require({
 					utils_notices = "lualine.utils.notices",
@@ -133,14 +118,7 @@ return {
 					lualine_z = {},
 					-- These will be filled later
 					lualine_c = { { "filename", path = 1 } },
-					lualine_x = {
-						{
-							function()
-								-- invoke `progress` here.
-								return require("lsp-progress").progress()
-							end,
-						},
-					},
+					lualine_x = {},
 				},
 				inactive_sections = {
 					-- these are to remove the defaults
@@ -247,27 +225,10 @@ return {
 			})
 
 			ins_right({
-				-- Lsp server name .
 				function()
-					local msg = "null"
-					local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-					local clients = vim.lsp.get_active_clients()
-					if next(clients) == nil then
-						return msg
-					end
-					for _, client in ipairs(clients) do
-						local filetypes = client.config.filetypes
-						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-							return client.name
-						end
-					end
-					return msg
+					-- invoke `progress` here.
+					return require("lsp-progress").progress()
 				end,
-				icon = " LSP:",
-				-- color = {
-				--     fg = colors.cyan,
-				--     gui = "bold"
-				-- }
 			})
 
 			ins_right({
