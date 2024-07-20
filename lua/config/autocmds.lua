@@ -26,6 +26,14 @@ autocmd("TextYankPost", {
   end
 })
 
+-- listen lsp-progress event and refresh lualine
+augroup("lualine_augroup", { clear = true })
+autocmd("User", {
+  group = "lualine_augroup",
+  pattern = "LspProgressStatusUpdated",
+  callback = require("lualine").refresh,
+})
+
 autocmd({ "BufWritePost", "BufReadPost" }, {
   callback = function()
 
