@@ -43,7 +43,7 @@ vim.keymap.set("n", "<leader>t", "<cmd>lua vim.diagnostic.open_float()<CR>", { n
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-L>", "<cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-H>", "<cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>gch", "<cmd>Telescope git_bcommits<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>gch", utils.my_git_bcommits, { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-L>", "<cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-S-H>", "<cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
