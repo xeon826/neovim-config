@@ -22,17 +22,34 @@ return {
         local linter_sign = "" -- nf-fa-gear \uf013
         local lsp_sign = " LSP(s):"
 
+        -- Get the current file type
+        local filetype = vim.bo.filetype
+
+        -- Filter LSP clients by file type
         local lsp_clients = vim.lsp.get_active_clients()
-        local linters = require("lint").get_running()
+        local relevant_lsp_clients = {}
+        for _, client in ipairs(lsp_clients) do
+          if client.config.filetypes and vim.tbl_contains(client.config.filetypes, filetype) then
+            table.insert(relevant_lsp_clients, client)
+          end
+        end
+
+        -- Get relevant linters for the current file type
+        local linters = require("lint").linters_by_ft[filetype] or {}
+        local running_linters = require("lint").get_running()
+        local relevant_linters = vim.tbl_filter(function(linter)
+          return vim.tbl_contains(running_linters, linter)
+        end, linters)
+
         local combined_clients = {}
 
-        -- Add LSP clients to the combined list
-        for _, client in ipairs(lsp_clients) do
+        -- Add relevant LSP clients to the combined list
+        for _, client in ipairs(relevant_lsp_clients) do
           table.insert(combined_clients, { name = client.name, type = "lsp" })
         end
 
-        -- Add active linters to the combined list
-        for _, linter in ipairs(linters) do
+        -- Add relevant linters to the combined list
+        for _, linter in ipairs(relevant_linters) do
           table.insert(combined_clients, { name = linter, type = "linter" })
         end
 
@@ -48,8 +65,6 @@ return {
           local builder = {}
           local linter_added = false
           local lsp_added = false
-          local last_linter_index = #linters
-          local last_lsp_index = #lsp_clients
 
           for i, cli in ipairs(combined_clients) do
             if type(cli) == "table" and type(cli.name) == "string" and string.len(cli.name) > 0 then
@@ -66,8 +81,8 @@ return {
                 name_with_message = stringify(cli.name, messages_map[cli.name])
               end
 
-              -- Determine if a comma is needed
-              if (cli.type == "linter" and i < last_linter_index) or (cli.type == "lsp" and i < last_lsp_index + last_linter_index) then
+              -- Add a comma if it's not the last item
+              if i < #combined_clients then
                 table.insert(builder, name_with_message .. ",")
               else
                 table.insert(builder, name_with_message)
