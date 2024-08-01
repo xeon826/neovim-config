@@ -36,10 +36,11 @@ autocmd("User", {
 
 autocmd({ "BufWritePost", "BufReadPost" }, {
   callback = function()
-
-    -- try_lint without arguments runs the linters defined in `linters_by_ft`
-    -- for the current filetype
-    require("lint").try_lint()
+    local file_extension = vim.fn.expand("%:e")
+    -- Skip linting for .md files
+    if file_extension ~= "md" then
+      require("lint").try_lint()
+    end
   end,
 })
 
