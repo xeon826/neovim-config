@@ -1,23 +1,10 @@
---
--- ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
--- ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
--- ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
--- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
--- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
--- ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
---
--- File: plugins/treesitter.lua
--- Description: nvim-treesitter configuration
--- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
 return {{
-    -- Treesitter interface
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn"t work on Windows
     build = ":TSUpdate",
     dependencies = {{
         "nvim-treesitter/nvim-treesitter-textobjects",
         init = function()
-            -- PERF: no need to load the plugin, if we only need its queries for mini.ai
             local plugin = require("lazy.core.config").spec.plugins["nvim-treesitter"]
             local opts = require("lazy.core.plugin").values(plugin, "opts", false)
             local enabled = false
@@ -36,7 +23,7 @@ return {{
     }},
     opts = {
         -- A list of parser names, or "all"
-        ensure_installed = {"go", "python", "dockerfile", "json", "yaml", "markdown", "html", "scss", "css", "vim"},
+        ensure_installed = {"go", "python", "dockerfile", "json", "yaml", "markdown", "html", "scss", "css", "vim", "jsonc", "blade", "php"},
 
         highlight = {
             enable = true,
@@ -63,5 +50,16 @@ return {{
     },
     config = function(_, opts)
         require("nvim-treesitter.configs").setup(opts)
+
+        -- Add blade support using a third-party parser
+        require("nvim-treesitter.parsers").get_parser_configs().blade = {
+            install_info = {
+                url = "https://github.com/EmranMR/tree-sitter-blade",
+                files = {"src/parser.c"},
+                branch = "main"
+            },
+            filetype = "blade"
+        }
     end
 }}
+
