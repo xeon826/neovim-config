@@ -82,6 +82,15 @@ return {
 						}
 					end,
 				},
+				blade = {
+					function()
+						return {
+							exe = "blade-formatter",
+							args = { "--stdin" },
+							stdin = true,
+						}
+					end,
+				},
 				r = {
 					function()
 						return {
@@ -153,6 +162,6 @@ return {
 				python = { "mypy" },
 			}
 		end,
-    event = 'VimEnter'
+		event = "VimEnter",
 	},
 }
