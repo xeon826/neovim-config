@@ -44,6 +44,31 @@ autocmd({ "BufWritePost", "BufReadPost" }, {
   end,
 })
 
+-- autocmd({ "BufWritePost", "BufReadPost" }, {
+--   callback = function()
+--     local file_extension = vim.fn.expand("%:e")
+--     -- Skip linting for .md files
+--     if file_extension ~= "md" then
+--       vim.defer_fn(function()
+--         require("lint").try_lint()
+--       end, 100)  -- Delay by 100ms (you can adjust this as needed)
+--     end
+--   end,
+-- })
+
+
+
+-- autocmd({ "BufWritePost", "BufReadPost" }, {
+--   callback = function()
+--     local file_extension = vim.fn.expand("%:e")
+--     -- Skip linting for .md files
+--     if file_extension ~= "md" then
+--       require("lint").try_lint()
+--     end
+--   end,
+-- })
+
+
 -- Remove whitespace on save
 -- autocmd("BufWritePre", {
 --   pattern = "",
