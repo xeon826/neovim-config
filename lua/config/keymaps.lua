@@ -109,3 +109,6 @@ vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP s
 vim.keymap.set({"n", "t"}, "<c-/>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
 vim.api.nvim_del_keymap('n', 'm')
 vim.keymap.set("n", "m", "m", { desc = "mark" })
+vim.keymap.set("n", "<leader>vc", "<cmd>VimtexCompile<cr>", { desc = "Vimtex compile", silent=true })
+vim.keymap.set("n", "<leader>vv", "<cmd>VimtexView<cr>", { desc = "Vimtex view" })
+vim.keymap.set("n", "<leader>ve", "<cmd>VimtexErrors<cr>", { desc = "Vimtex errors" })

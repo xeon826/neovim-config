@@ -21,6 +21,8 @@ cmd([[
 	filetype plugin indent on
 ]])
 
+g.vimtex_view_method = 'mupdf'
+g.vimtex_compiler_method = 'latexmk'
 opt.backspace = {"eol", "start", "indent"} -- allow backspacing over everything in insert mode
 opt.clipboard = "unnamedplus" -- allow neovim to access the system clipboard
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file

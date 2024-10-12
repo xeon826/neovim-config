@@ -35,5 +35,6 @@
   "toggle-lsp-diagnostics.nvim": { "branch": "main", "commit": "4c515b1625433306807e4a47756592fde0b83c82" },
   "tree-sitter-blade": { "branch": "main", "commit": "dead019eeabe612da7fb325caf72fdc7c744d19a" },
   "vim-floaterm": { "branch": "master", "commit": "4e28c8dd0271e10a5f55142fb6fe9b1599ee6160" },
-  "vim-plugin-AnsiEsc": { "branch": "master", "commit": "690f820d20b6e3a79ba20499874eb7333aa4ca5c" }
+  "vim-plugin-AnsiEsc": { "branch": "master", "commit": "690f820d20b6e3a79ba20499874eb7333aa4ca5c" },
+  "vimtex": { "branch": "master", "commit": "f8b84dc1583698634a79bcbd05c4d06e2de427b2" }
 }
