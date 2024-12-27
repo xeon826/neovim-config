@@ -91,6 +91,26 @@ return {
 						}
 					end,
 				},
+				ruby = { -- Add Ruby formatter (Rubocop)
+					function()
+						return {
+							exe = "rubocop",
+							args = {
+								"--fix-layout",
+								"--stdin",
+								vim.api.nvim_buf_get_name(0),
+								"--format",
+								"files",
+							},
+							stdin = true,
+							transform = function(text)
+								table.remove(text, 1)
+								table.remove(text, 1)
+								return text
+							end,
+						}
+					end,
+				},
 				r = {
 					function()
 						return {

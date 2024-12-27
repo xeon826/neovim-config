@@ -11,7 +11,7 @@
 -- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
 local utils = require("config/utils")
 -- Close all windows and exit from Neovim with <leader> and q
-vim.keymap.set("n", "<leader>q", ":qa!<CR>", {})
+vim.keymap.set("n", "<leader>qa", ":qa!<CR>", {})
 -- Fast saving with <leader> and s
 vim.keymap.set("n", "<leader>s", ":w<CR>", {})
 -- Move around splits
@@ -53,7 +53,7 @@ vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", { noremap = tr
 vim.keymap.set('n', '<Leader>bcu', utils.close_unpinned_buffers, {noremap = true, silent = true, desc = "Close unpinned buffers"})
 vim.keymap.set("n", "<leader>bco", "<cmd>BufferLineCloseOthers<CR>", { noremap = true, silent = true, desc = "Close all aside from open buffer." })
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
-vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+vim.keymap.set("n", "<leader>q", "<cmd>q!<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>ud", ":silent :ToggleDiag<cr>", { desc = "Toggle Diagnostics" })
 vim.keymap.set("n", "<leader>ti", "A # type: ignore<esc>", { desc = "Insert mypy type ignore at end of line" })
 vim.keymap.set("n", "<Esc>", function()
@@ -81,7 +81,6 @@ vim.keymap.set(
 	'<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
 	{ desc = "Search on current file" }
 )
-vim.keymap.set("n", "<leader>qq", "<cmd>qa!<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" }) -- show definition, references
 -- vim.keymap.set("n", "gd", vim.lsp.buf.declaration, { desc = "Go to declaration" }) -- go to declaration
 vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" }) -- show lsp definitions
@@ -112,3 +111,12 @@ vim.keymap.set("n", "m", "m", { desc = "mark" })
 vim.keymap.set("n", "<leader>vc", "<cmd>VimtexCompile<cr>", { desc = "Vimtex compile", silent=true })
 vim.keymap.set("n", "<leader>vv", "<cmd>VimtexView<cr>", { desc = "Vimtex view" })
 vim.keymap.set("n", "<leader>ve", "<cmd>VimtexErrors<cr>", { desc = "Vimtex errors" })
+vim.keymap.set("n", "<leader>ve", "<cmd>VimtexErrors<cr>", { desc = "Vimtex errors" })
+
+vim.keymap.set('n', '<leader>a', ':AI<CR>')
+vim.keymap.set('x', '<leader>a', ':AI<CR>')
+vim.keymap.set('x', '<leader>s', ':AIEdit ')
+vim.keymap.set('n', '<leader>s', ':AIEdit ')
+vim.keymap.set('x', '<leader>c', ':AIChat ')
+vim.keymap.set('n', '<leader>c', ':AIChat<CR>')
+vim.keymap.set('n', '<leader>r', ':AIRedo<CR>')

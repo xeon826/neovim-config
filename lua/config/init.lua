@@ -18,6 +18,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.python3_host_prog = '/home/dan/.pyenv/shims/python3'
+
 vim.g.mapleader = " "
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
 
