@@ -24,6 +24,15 @@ return {
 			end
 
 			local formatterConfig = {
+				htmldjango = {
+					function()
+						return {
+							exe = "djlint",
+							args = { "--reformat", "-" },
+							stdin = true,
+						}
+					end,
+				},
 				python = {
 					function()
 						return {
