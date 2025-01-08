@@ -77,7 +77,7 @@ return {
 			-- LSP Server Settings
 			servers = {
 				jsonls = {},
-				tsserver = {
+				ts_ls = {
 					enabled = true,
 					filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 				},
@@ -123,7 +123,7 @@ return {
 				dockerls = {},
 				bashls = {},
 				-- gopls = {},
-				ruff_lsp = {},
+				ruff = {},
 				pylsp = {
 					enabled = true,
 					settings = {
@@ -160,9 +160,9 @@ return {
 			-- you can do any additional lsp server setup here
 			-- return true if you don"t want this server to be setup with lspconfig
 			setup = {
-				tsserver = function()
+				ts_ls = function()
 					-- disable tsserver
-					require("lspconfig").tsserver.setup({})
+					require("lspconfig").ts_ls.setup({})
 				end,
 				vtsls = function(_, opts)
 					require("lspconfig").vtsls.setup({})
