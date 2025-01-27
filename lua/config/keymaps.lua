@@ -146,15 +146,25 @@ vim.keymap.set(
 	{ silent = true, desc = "show/enter output" }
 )
 
-vim.keymap.set("v", "<leader>dc", utils.define_cell_with_visual_range, { noremap = true, silent = true, desc="Define a molten notebook cell" })
+
 
 vim.keymap.set("n", "<leader>ip", function()
-  local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
-  if venv ~= nil then
-    -- in the form of /home/benlubas/.virtualenvs/VENV_NAME
-    venv = string.match(venv, "/.+/(.+)")
-    vim.cmd(("MoltenInit %s"):format(venv))
-  else
-    vim.cmd("MoltenInit python3-local")
-  end
+  vim.cmd(("MoltenInit %s"):format(utils.get_ipy_kernel_name))
+	-- local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
+	-- -- local kernel_name = ""
+	-- if venv ~= nil then
+	-- else
+	--  end
+  -- local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
+  -- if venv ~= nil then
+  --   -- in the form of /home/benlubas/.virtualenvs/VENV_NAME
+  --   venv = string.match(venv, "/.+/(.+)")
+  --   vim.cmd(("MoltenInit %s"):format(venv))
+  -- else
+  --   vim.cmd("MoltenInit python3-local")
+  -- end
 end, { desc = "Initialize Molten for python3", silent = true })
+
+vim.keymap.set("v", "<leader>dc", utils.define_cell_with_visual_range, { noremap = true, silent = false, desc="Define a molten notebook cell" })
+
+
