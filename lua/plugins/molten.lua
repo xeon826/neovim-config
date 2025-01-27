@@ -1,7 +1,7 @@
 return {
 	{
 		"benlubas/molten-nvim",
-		-- version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+		version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
 		dependencies = { "3rd/image.nvim" },
 		lazy = false,
 		event = "VimEnter", -- Ensures it starts after Neovim finishes loading

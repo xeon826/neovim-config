@@ -53,6 +53,22 @@ function M.close_unpinned_buffers()
 	end)
 end
 
+M.define_cell_with_visual_range = function()
+    -- Get the current buffer number
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    -- Get mark positions `<` and `>` represent the start and end of visual selection
+    local start_pos = vim.api.nvim_buf_get_mark(bufnr, "<")
+    local end_pos = vim.api.nvim_buf_get_mark(bufnr, ">")
+
+    -- Extract the line numbers from the positions
+    local start_line = start_pos[1]
+    local end_line = end_pos[1]
+
+    -- Call the MoltenDefineCell function with the extracted range and language
+    vim.fn.MoltenDefineCell(start_line, end_line, 'python3-local')
+end
+
 return M
 
 -- local delta = previewers.new_termopen_previewer {

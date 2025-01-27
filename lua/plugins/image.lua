@@ -2,7 +2,7 @@ return {
 	{
 		-- see the image.nvim readme for more information about configuring this plugin
 		"3rd/image.nvim",
-		-- version = "1.1.0",
+		version = "1.1.0",
 		lazy = false,
 		event = "VimEnter", -- Ensures it starts after Neovim finishes loading
 		opts = {
