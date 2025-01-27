@@ -18,7 +18,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.python3_host_prog = '/home/dan/.pyenv/shims/python3'
+vim.g.python3_host_prog = '/home/dan/.virtualenvs/neovim/bin/python3'
 
 vim.g.mapleader = " "
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
@@ -41,6 +41,9 @@ require("lazy").setup({
     root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
     spec = spec,
     lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
+    rocks = {
+        hererocks = true,  -- recommended if you do not have global installation of Lua 5.1.
+    },
     defaults = {
         lazy = false, -- should plugins be lazy-loaded?
         version = nil

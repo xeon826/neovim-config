@@ -115,6 +115,7 @@ vim.keymap.set("n", "]D", function()
 end, { desc = "Go to next error" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" }) -- show documentation for what is under cursor
 vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP servers silently" })
+vim.keymap.set({ "n", "t" }, "<c-t>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
 vim.keymap.set({ "n", "t" }, "<c-/>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
 vim.api.nvim_del_keymap("n", "m")
 vim.keymap.set("n", "m", "m", { desc = "mark" })
@@ -124,10 +125,3 @@ vim.keymap.set("n", "<leader>ve", "<cmd>VimtexErrors<cr>", { desc = "Vimtex erro
 vim.keymap.set("n", "<leader>ve", "<cmd>VimtexErrors<cr>", { desc = "Vimtex errors" })
 vim.keymap.set("n", "<leader>c", "<cmd>AvanteClear<cr>", { desc = "Clear avante chat" })
 
--- vim.keymap.set('n', '<leader>a', ':AI<CR>')
--- vim.keymap.set('x', '<leader>a', ':AI<CR>')
--- vim.keymap.set('x', '<leader>s', ':AIEdit ')
--- vim.keymap.set('n', '<leader>s', ':AIEdit ')
--- vim.keymap.set('x', '<leader>c', ':AIChat ')
--- vim.keymap.set('n', '<leader>c', ':AIChat<CR>')
--- vim.keymap.set('n', '<leader>r', ':AIRedo<CR>')

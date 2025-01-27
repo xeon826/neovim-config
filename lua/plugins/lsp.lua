@@ -142,16 +142,18 @@ return {
 								preload = { enabled = false },
 								rope = { enabled = false },
 								pylsp_mypy = { enabled = false },
+								jedi_completion = { enabled = true },
+								jedi_hover = { enabled = true },
+								jedi_references = { enabled = true },
+								jedi_signature_help = { enabled = true },
+								jedi_symbols = { enabled = true },
 							},
 						},
 					},
 					on_attach = function(client, bufnr)
-						-- Disable unnecessary capabilities
+						-- Only disable formatting as we'll use other formatters
 						client.server_capabilities.documentFormattingProvider = false
 						client.server_capabilities.documentRangeFormattingProvider = false
-						client.server_capabilities.hoverProvider = false
-						client.server_capabilities.signatureHelpProvider = false
-						client.server_capabilities.codeActionProvider = false
 					end,
 				},
 				vimls = {},
@@ -213,7 +215,7 @@ return {
 			local mlsp = require("mason-lspconfig")
 			local available = mlsp.get_available_servers()
 
-			local ensure_installed = {} ---@type string[]
+			local ensure_installed = {"pyright"} ---@type string[]
 			for server, server_opts in pairs(servers) do
 				if server_opts then
 					server_opts = server_opts == true and {} or server_opts
