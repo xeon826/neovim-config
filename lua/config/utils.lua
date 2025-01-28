@@ -71,15 +71,19 @@ function M.get_ipy_kernel_name()
 end
 
 M.define_cell_with_visual_range = function()
-	-- Get the marks while still in visual mode
-	local start_line = vim.api.nvim_buf_get_mark(0, "<")[1]
-	local end_line = vim.api.nvim_buf_get_mark(0, ">")[1]
+	-- Get the visual selection range
+	local start_pos = vim.fn.getpos("v")
+	local end_pos = vim.fn.getpos(".")
 	
-	-- Now exit visual mode
-	vim.cmd("normal! \\<Esc>")
+	-- Extract line numbers (getpos returns [bufnum, lnum, col, off])
+	local start_line = start_pos[2] -- Convert to 0-based for MoltenDefineCell
+	local end_line = end_pos[2]
+	
+	-- Exit visual mode
 	
 	-- Call the MoltenDefineCell function with the extracted range and language
 	vim.fn.MoltenDefineCell(start_line, end_line, M.get_ipy_kernel_name())
+	vim.cmd("normal! \\<Esc>")
 end
 
 return M

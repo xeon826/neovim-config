@@ -137,6 +137,7 @@ vim.keymap.set(
 	{ silent = true, desc = "evaluate visual selection" }
 )
 vim.keymap.set("n", "<leader>rd", ":MoltenDelete<CR>", { silent = true, desc = "molten delete cell" })
+vim.keymap.set("n", "<leader>po", ":MoltenImagePopup<CR>", { silent = true, desc = "molten delete cell" })
 vim.keymap.set("n", "<leader>oh", ":MoltenHideOutput<CR>", { silent = true, desc = "hide output" })
 vim.keymap.set("n", "<leader>os", ":MoltenShowOutput<CR>", { silent = true, desc = "hide output" })
 vim.keymap.set(
@@ -145,6 +146,8 @@ vim.keymap.set(
 	":noautocmd MoltenEnterOutput<CR>",
 	{ silent = true, desc = "show/enter output" }
 )
+
+vim.keymap.set("v", "<leader>dc", utils.define_cell_with_visual_range, { noremap = true, silent = false, desc="Define a molten notebook cell" })
 
 
 
@@ -165,6 +168,5 @@ vim.keymap.set("n", "<leader>ip", function()
   -- end
 end, { desc = "Initialize Molten for python3", silent = true })
 
-vim.keymap.set("v", "<leader>dc", utils.define_cell_with_visual_range, { noremap = true, silent = false, desc="Define a molten notebook cell" })
 
 
