@@ -133,7 +133,7 @@ vim.keymap.set("n", "<leader>rr", ":MoltenReevaluateCell<CR>", { silent = true, 
 vim.keymap.set(
 	"v",
 	"<leader>r",
-	":<C-u>MoltenEvaluateVisual<CR>gv",
+	":<C-u>MoltenEvaluateVisual<CR>",
 	{ silent = true, desc = "evaluate visual selection" }
 )
 vim.keymap.set("n", "<leader>rd", ":MoltenDelete<CR>", { silent = true, desc = "molten delete cell" })
