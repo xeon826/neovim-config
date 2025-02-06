@@ -140,33 +140,29 @@ vim.keymap.set("n", "<leader>rd", ":MoltenDelete<CR>", { silent = true, desc = "
 vim.keymap.set("n", "<leader>po", ":MoltenImagePopup<CR>", { silent = true, desc = "molten delete cell" })
 vim.keymap.set("n", "<leader>oh", ":MoltenHideOutput<CR>", { silent = true, desc = "hide output" })
 vim.keymap.set("n", "<leader>os", ":MoltenShowOutput<CR>", { silent = true, desc = "hide output" })
+vim.keymap.set("n", "<leader>oe", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "show/enter output" })
+
 vim.keymap.set(
-	"n",
-	"<leader>oe",
-	":noautocmd MoltenEnterOutput<CR>",
-	{ silent = true, desc = "show/enter output" }
+	"v",
+	"<leader>dc",
+	utils.define_cell_with_visual_range,
+	{ noremap = true, silent = false, desc = "Define a molten notebook cell" }
 )
 
-vim.keymap.set("v", "<leader>dc", utils.define_cell_with_visual_range, { noremap = true, silent = false, desc="Define a molten notebook cell" })
-
-
-
 vim.keymap.set("n", "<leader>ip", function()
-  vim.cmd(("MoltenInit %s"):format(utils.get_ipy_kernel_name))
-	-- local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
-	-- -- local kernel_name = ""
-	-- if venv ~= nil then
-	-- else
-	--  end
-  -- local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
-  -- if venv ~= nil then
-  --   -- in the form of /home/benlubas/.virtualenvs/VENV_NAME
-  --   venv = string.match(venv, "/.+/(.+)")
-  --   vim.cmd(("MoltenInit %s"):format(venv))
-  -- else
-  --   vim.cmd("MoltenInit python3-local")
-  -- end
+	vim.cmd(("MoltenInit %s"):format(utils.get_ipy_kernel_name))
 end, { desc = "Initialize Molten for python3", silent = true })
-
-
-
+vim.keymap.set("n", "<C-n>", ":MoltenNext<CR>", { noremap = true, silent = true, desc = "Go to next molten cell" })
+vim.keymap.set("n", "<C-p>", ":MoltenPrev<CR>", { noremap = true, silent = true, desc = "Go to previous molten cell" })
+vim.keymap.set(
+	"n",
+	"<C-M-n>",
+	":MoltenReevaluateCell<CR>:MoltenNext<CR>",
+	{ noremap = true, silent = true, desc = "Evaluate and go to next cell" }
+)
+vim.keymap.set(
+	"n",
+	"<C-M-p>",
+	":MoltenReevaluateCell<CR>:MoltenPrev<CR>",
+	{ noremap = true, silent = true, desc = "Evaluate and go to previous cell" }
+)

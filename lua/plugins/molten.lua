@@ -14,19 +14,10 @@ return {
       vim.g.molten_output_virt_lines = true
       vim.g.molten_image_location = 'float'
       vim.g.molten_save_path = '.'
+      vim.g.molten_auto_open_output = false
+      vim.g.molten_output_win_hide_on_leave = true
+      vim.g.molten_virt_text_max_lines = 50
 
-      -- vim.g.molten_auto_open_output = false
-      -- vim.g.molten_image_location = "float"
-      -- vim.g.molten_image_provider = "image.nvim"
-      -- -- vim.g.molten_output_show_more = true
-      -- vim.g.molten_output_win_border = { "", "━", "", "" }
-      -- vim.g.molten_output_win_max_height = 12
-      -- -- vim.g.molten_output_virt_lines = true
-      -- vim.g.molten_virt_text_output = true
-      -- vim.g.molten_use_border_highlights = true
-      -- vim.g.molten_virt_lines_off_by_1 = true
-      -- vim.g.molten_wrap_output = true
-      -- vim.g.molten_tick_rate = 142
 		end,
 	},
 }
