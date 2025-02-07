@@ -125,6 +125,44 @@ vim.keymap.set("n", "<leader>ve", "<cmd>VimtexErrors<cr>", { desc = "Vimtex erro
 vim.keymap.set("n", "<leader>ve", "<cmd>VimtexErrors<cr>", { desc = "Vimtex errors" })
 vim.keymap.set("n", "<leader>c", "<cmd>AvanteClear<cr>", { desc = "Clear avante chat" })
 
+-- Add cells
+vim.keymap.set("n", "<leader>ja", "<cmd>JupyterAddCellBelow<CR>", { desc = "Add Jupyter cell below" })
+vim.keymap.set("n", "<leader>jA", "<cmd>JupyterAddCellAbove<CR>", { desc = "Add Jupyter cell above" })
+
+-- Cell operations
+vim.keymap.set("n", "<leader>jd", "<cmd>JupyterRemoveCell<CR>", { desc = "Remove current Jupyter cell" })
+vim.keymap.set("n", "<leader>jm", "<cmd>JupyterMergeCellAbove<CR>", { desc = "Merge with cell above" })
+vim.keymap.set("n", "<leader>jM", "<cmd>JupyterMergeCellBelow<CR>", { desc = "Merge with cell below" })
+vim.keymap.set("n", "<leader>jt", "<cmd>JupyterConvertCellType<CR>", { desc = "Convert cell type (code/markdown)" })
+vim.keymap.set("v", "<leader>jm", "<cmd>JupyterMergeVisual<CR>", { desc = "Merge selected cells" })
+vim.keymap.set("n", "<leader>su", function()
+	require("nvim-python-repl").send_statement_definition()
+end, { desc = "Send semantic unit to REPL" })
+
+vim.keymap.set("v", "<leader>sv", function()
+	require("nvim-python-repl").send_visual_to_repl()
+end, { desc = "Send visual selection to REPL" })
+--
+vim.keymap.set("n", "<leader>sb", function()
+	require("nvim-python-repl").send_buffer_to_repl()
+end, { desc = "Send entire buffer to REPL" })
+--
+-- vim.keymap.set("n", [your keymap], function() require('nvim-python-repl').toggle_execute() end, { desc = "Automatically execute command in REPL after sent"})
+--
+vim.keymap.set("n", "<leader>sh", function()
+	require("nvim-python-repl").toggle_vertical()
+end, { desc = "Create REPL in vertical or horizontal split" })
+
+vim.keymap.set("n", "<C-m>", function()
+	require("nvim-python-repl").send_current_cell_to_repl()
+end, { desc = "Sends the cell under cursor to repl" })
+
+vim.keymap.set({ "n", "t" }, "<leader>st", function()
+	require("nvim-python-repl").toggle_repl()
+end, { desc = "Toggle repl" })
+--
+-- vim.keymap.set("n", [your keymap], function() require('nvim-python-repl').open_repl() end, { desc = "Opens the REPL in a window split"})
+
 -- molten
 -- vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>", { silent = true, desc = "Initialize the plugin" })
 -- vim.keymap.set("n", "<leader>me", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "run operator selection" })

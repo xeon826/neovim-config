@@ -20,9 +20,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- vim.g.python3_host_prog = '/home/dan/.virtualenvs/neovim/bin/python3'
 vim.g.python3_host_prog = 'python3'
+-- vim.g.terminal_emulator = 'kitty'
+-- vim.api.nvim_set_var('terminal_emulator', 'kitty')
+-- vim.opt.shell = 'kitty'
 
 vim.g.mapleader = " "
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
+
+vim.api.nvim_set_hl(0, "CurSearch", { fg = "#ffffff", bg = "#2D4F67", bold = true })
 
 -- build spec
 local spec = {{
