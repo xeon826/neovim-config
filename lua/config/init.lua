@@ -25,6 +25,7 @@ vim.g.python3_host_prog = 'python3'
 -- vim.opt.shell = 'kitty'
 
 vim.g.mapleader = " "
+vim.g.jukit_mappings_ext_enabled = {"py", "ipynb"}
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
 
 vim.api.nvim_set_hl(0, "CurSearch", { fg = "#ffffff", bg = "#2D4F67", bold = true })
