@@ -23,7 +23,7 @@ return {
 				"S",
 				mode = { "n", "x", "o" },
 				function()
-          require('flash').jump({ search = { forward = false } })
+					require("flash").treesitter()
 				end,
 				desc = "Flash Treesitter",
 			},
