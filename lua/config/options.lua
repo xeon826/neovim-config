@@ -30,6 +30,7 @@ opt.encoding = "utf-8" -- the encoding
 opt.matchpairs = {"(:)", "{:}", "[:]", "<:>"}
 opt.syntax = "enable"
 opt.sessionoptions = {'localoptions'}
+-- opt.modes.search.enabled = true
 
 -- indention
 opt.autoindent = true -- auto indentation

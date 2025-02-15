@@ -30,7 +30,7 @@ vim.keymap.set("i", "<C-j>", "<cmd>normal! 2j<CR>", { noremap = true, silent = t
 vim.keymap.set("i", "<C-k>", "<cmd>normal! 2k<CR>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-l>", "<cmd>normal! 15l<CR>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-h>", "<cmd>normal! 15h<CR>", { noremap = true, silent = true })
-vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
+vim.keymap.set({ "i", "n" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
 vim.keymap.set("n", "<leader>q", "<cmd>bufdo bd!<cr><cmd>qa!<cr>", { desc = "Quit All" })
