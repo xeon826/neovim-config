@@ -13,7 +13,7 @@ return {
 				utils.close_unpinned_buffers,
 				{ noremap = true, silent = true, desc = "Close unpinned buffers" },
 			},
-			{ "<leader>bd", "<cmd>bd<CR>", { noremap = true, silent = true, desc = "Delete current buffer" } },
+			{ "<leader>bd", "<cmd>NvimTreeClose<cr><cmd>bd<CR>", { noremap = true, silent = true, desc = "Delete current buffer" } },
 			{
 				"<leader>bp",
 				"<cmd>BufferLineTogglePin<CR>",
