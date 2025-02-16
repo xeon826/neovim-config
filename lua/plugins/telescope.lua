@@ -21,7 +21,7 @@ return {
 			{ mode="n", "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Buffers" },
 			{ mode="n", "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Help Tags" },
 			{ mode="n", "<leader>t", "<cmd>lua vim.diagnostic.open_float()<CR>", desc = "Open diagnostics" },
-			{ mode="n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Show buffer diagnostics" },
+			{ mode="n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Show buffer diagnostics" },
 			{ mode="n", "gr", "<cmd>Telescope lsp_references<CR>", desc = "Show LSP references" },
 			{ mode="n", "gc", vim.lsp.buf.declaration, desc = "Go to declaration" },
 			{ mode="n", "gd", "<cmd>Telescope lsp_definitions<CR>", desc = "Show LSP definitions" },
