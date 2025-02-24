@@ -1,14 +1,18 @@
 return {
 	{
-		"nvim-flutter/flutter-tools.nvim",
-    ft = {'dart', 'yaml'},
-    enabled=false,
+		"mac-sync",
+		name = "mac-sync",
+    enabled=true,
+		dir = vim.fn.stdpath("config"), -- Point to nvim config directory for virtual plugin
     init = function()
       -- Create autocommand group
       local group = vim.api.nvim_create_augroup("MacSync", { clear = true })
-      
-      -- Add autocommand for BufWritePost
-      vim.api.nvim_create_autocmd("BufWritePost", {
+      local autocmd_enabled = false
+      local autocmd_id = nil
+
+      -- Function to create the autocommand
+      local function create_autocmd()
+        return vim.api.nvim_create_autocmd("BufWritePost", {
         group = group,
         pattern = "*",
         callback = function()
@@ -42,7 +46,43 @@ return {
           end
         end,
       })
+      end
+
+      -- Function to enable auto-sync
+      local function enable_auto_sync()
+        if not autocmd_enabled then
+          autocmd_id = create_autocmd()
+          autocmd_enabled = true
+          vim.notify("Auto-sync enabled", vim.log.levels.INFO)
+        else
+          vim.notify("Auto-sync is already enabled", vim.log.levels.WARN)
+        end
+      end
+
+      -- Function to disable auto-sync
+      local function disable_auto_sync()
+        if autocmd_enabled and autocmd_id then
+          vim.api.nvim_del_autocmd(autocmd_id)
+          autocmd_enabled = false
+          autocmd_id = nil
+          vim.notify("Auto-sync disabled", vim.log.levels.INFO)
+        else
+          vim.notify("Auto-sync is already disabled", vim.log.levels.WARN)
+        end
+      end
+
+      -- Create user commands
+      vim.api.nvim_create_user_command("AutoSyncEnable", enable_auto_sync, {})
+      vim.api.nvim_create_user_command("AutoSyncDisable", disable_auto_sync, {})
+      vim.api.nvim_create_user_command("AutoSyncToggle", function()
+        if autocmd_enabled then
+          disable_auto_sync()
+        else
+          enable_auto_sync()
+        end
+      end, {})
     end,
+
 		keys = {
 			{
 				"<leader>sp", -- sync push
@@ -80,10 +120,13 @@ return {
 					
 					-- Pull from remote
 					local cmd = string.format(
-						'rsync -avz --delete -R "mac:/Users/administrator/sync/%s/" "%s"',
-						current_dir,
-						'.'
+						'rsync -avz --delete "mac:/Users/administrator/sync/%s/" .',
+						current_dir
 					)
+					
+					vim.notify("Pulling from remote...", vim.log.levels.INFO)
+					local output = vim.fn.system(cmd)
+					local exit_code = vim.v.shell_error
 					
 					if exit_code ~= 0 then
 						vim.notify("Pull failed:\n" .. output, vim.log.levels.ERROR)
@@ -93,11 +136,6 @@ return {
 				end,
 				desc = "Sync pull from remote",
 			},
-    },
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"stevearc/dressing.nvim", -- optional for vim.ui.select
 		},
-		config = true,
 	},
 }

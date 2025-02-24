@@ -30,6 +30,7 @@ opt.encoding = "utf-8" -- the encoding
 opt.matchpairs = {"(:)", "{:}", "[:]", "<:>"}
 opt.syntax = "enable"
 opt.sessionoptions = {'localoptions'}
+vim.env.TERM = 'xterm-kitty'
 -- opt.modes.search.enabled = true
 
 -- indention
