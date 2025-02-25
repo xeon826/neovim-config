@@ -5,6 +5,9 @@ return {
 		lazy = false,
 		version = false, -- set this if you want to always pull the latest change
 		opts = {
+			rag_service = {
+				enabled = true, -- Enables the rag service, requires OPENAI_API_KEY to be set
+			},
 			provider = "claude", -- In this example, use Claude for planning, but you can also use any provider you want.
 			claude = {
 				endpoint = "https://api.anthropic.com",

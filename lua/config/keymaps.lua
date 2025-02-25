@@ -2,8 +2,8 @@
 -- ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
 -- ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
 -- ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
--- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
--- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+-- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██╔████╔██║
+-- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║╚██╔╝██║
 -- ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 --
 -- File: config/keymaps.lua
@@ -33,10 +33,8 @@ vim.keymap.set("i", "<C-h>", "<cmd>normal! 15h<CR>", { noremap = true, silent = 
 vim.keymap.set({ "i", "n" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
-vim.keymap.set("n", "<leader>q", "<cmd>bufdo bd!<cr><cmd>qa!<cr>", { desc = "Quit All" })
 vim.keymap.set("n", "<leader>ti", "A # type: ignore<esc>", { desc = "Insert mypy type ignore at end of line" })
 vim.keymap.set("n", "<leader>ch", "<cmd>checkhealth<cr>", { desc = "Run checkhealth" })
-
 
 vim.keymap.set("n", "<Esc>", function()
 	vim.cmd("nohlsearch")
@@ -46,5 +44,11 @@ vim.keymap.set("n", "<C-[>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
 
-
+vim.keymap.set("n", "<leader>q", function()
+  -- Close avante if it's open
+  pcall(require("avante").close)
+  -- Close all buffers and quit
+  vim.cmd("bufdo bd!")
+  vim.cmd("qa!")
+end, { desc = "Quit All" })
 
