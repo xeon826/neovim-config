@@ -31,6 +31,7 @@ opt.matchpairs = {"(:)", "{:}", "[:]", "<:>"}
 opt.syntax = "enable"
 opt.sessionoptions = {'localoptions'}
 vim.env.TERM = 'xterm-kitty'
+opt.laststatus = 3
 -- opt.modes.search.enabled = true
 
 -- indention
