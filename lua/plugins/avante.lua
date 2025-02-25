@@ -6,6 +6,12 @@ return {
 		version = false, -- set this if you want to always pull the latest change
 		opts = {
 			provider = "claude", -- In this example, use Claude for planning, but you can also use any provider you want.
+			claude = {
+				endpoint = "https://api.anthropic.com",
+				model = "claude-3-5-sonnet-20241022",
+				temperature = 0,
+				max_tokens = 8192,
+			},
 			cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
 			behaviour = {
 				--- ... existing behaviours
@@ -18,7 +24,7 @@ return {
 					api_key_name = "GROQ_API_KEY",
 					endpoint = "https://api.groq.com/openai/v1/",
 					model = "llama-3.3-70b-versatile",
-					max_tokens = 72768, -- remember to increase this value, otherwise it will stop generating halfway
+					max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
 				},
 			},
 		},
