@@ -14,6 +14,7 @@ return {
 				model = "claude-3-5-sonnet-20241022",
 				temperature = 0,
 				max_tokens = 8192,
+        disable_tools = false
 			},
 			cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
 			behaviour = {

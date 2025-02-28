@@ -100,6 +100,9 @@ return {
 			-- LSP Server Settings
 			servers = {
 				jsonls = {},
+				dartls = {
+          enabled = false
+        },
 				ts_ls = {
 					enabled = true,
 					filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
