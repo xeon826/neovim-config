@@ -68,10 +68,12 @@ opt.listchars = {
 opt.cmdheight = 0 -- more space in the neovim command line for displaying messages
 
 opt.mouse = "a" -- allow the mouse to be used in neovim
-opt.number = true -- set numbered lines
+opt.number = true -- set absolute line numbers
+opt.relativenumber = true -- set relative line numbers
+opt.signcolumn = "number" -- combine sign column with number column
+opt.numberwidth = 4 -- increase number column width to fit both numbers
 opt.scrolloff = 18 -- minimal number of screen lines to keep above and below the cursor
 opt.sidescrolloff = 3 -- minimal number of screen columns to keep to the left and right (horizontal) of the cursor if wrap is `false`
-opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
 opt.splitbelow = true -- open new split below
 opt.splitright = true -- open new split to the right
 opt.wrap = false -- display a long line
