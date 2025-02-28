@@ -131,4 +131,4 @@ end
 
 -- Colorscheme
 -- By default, use rose-pine
-cmd.colorscheme("oxocarbon")
+cmd.colorscheme("tokyonight-night")

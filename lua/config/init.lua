@@ -60,7 +60,7 @@ require("lazy").setup({
         -- install missing plugins on startup
         missing = true,
         -- try to load one of these colorschemes when starting an installation during startup
-        colorscheme = {"oxocarbon.nvim", "rose-pine"}
+        colorscheme = {"tokyonight", "oxocarbon.nvim", "rose-pine"}
 
     },
     checker = {
