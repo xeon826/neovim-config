@@ -101,7 +101,7 @@ return {
 			servers = {
 				jsonls = {},
 				dartls = {
-          enabled = false
+          enabled = true
         },
 				ts_ls = {
 					enabled = true,
