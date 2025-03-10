@@ -2,7 +2,7 @@ return {
 	{
 		"mac-sync",
 		name = "mac-sync",
-    enabled=true,
+    enabled=false,
 		dir = vim.fn.stdpath("config"), -- Point to nvim config directory for virtual plugin
     init = function()
       -- Create autocommand group
