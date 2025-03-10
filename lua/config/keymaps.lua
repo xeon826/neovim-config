@@ -44,11 +44,25 @@ vim.keymap.set("n", "<C-[>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
 
-vim.keymap.set("n", "<leader>q", function()
-  -- Close avante if it's open
+vim.keymap.set("n", "<C-q>", function()
+  -- First try to close any floating windows
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then  -- Is floating window
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+
+  -- Try to close avante if it exists
   pcall(require("avante").close)
-  -- Close all buffers and quit
-  vim.cmd("bufdo bd!")
-  vim.cmd("qa!")
+
+  -- Force close all buffers, including modified ones
+  vim.cmd("silent! %bwipeout!")
+  
+  -- Close any remaining plugin windows/buffers
+  vim.cmd("silent! tabdo wincmd c")
+  
+  -- Finally quit
+  vim.cmd("quit!")
 end, { desc = "Quit All" })
 
