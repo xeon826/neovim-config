@@ -3,32 +3,51 @@ return {
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		lazy = false,
-		version = false, -- set this if you want to always pull the latest change
+		version = false,-- set this if you want to always pull the latest change
 		opts = {
-			rag_service = {
-				enabled = true, -- Enables the rag service, requires OPENAI_API_KEY to be set
-			},
-			provider = "claude", -- In this example, use Claude for planning, but you can also use any provider you want.
+      rag_service = {
+        enabled = true,
+        host_mount = os.getenv("HOME"),
+        provider = "ollama",
+        llm_model = "llama3",
+        embed_model = "nomic-embed-text",
+        endpoint = "http://172.17.0.1:11434",
+        -- index_patterns = {
+        --   "**/*.lua",
+        --   "**/*.md",
+        --   "**/*.txt",
+        --   "**/*.py",
+        --   -- Add other file patterns you want to index
+        -- },
+        -- exclude_patterns = {
+        --   "**/node_modules/**",
+        --   "**/.git/**",
+        --   -- Add patterns to exclude
+        -- },
+        -- Optional: force reindex on startup
+        -- force_reindex = true,
+      },
+			provider = "claude",
 			claude = {
 				endpoint = "https://api.anthropic.com",
 				model = "claude-3-5-sonnet-20241022",
 				temperature = 0,
 				max_tokens = 8192,
-        disable_tools = false
+				disable_tools = false,
 			},
-			cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
+			cursor_applying_provider = "groq",
 			behaviour = {
 				--- ... existing behaviours
-				enable_cursor_planning_mode = true, -- enable cursor planning mode!
+				enable_cursor_planning_mode = true,
 			},
 			vendors = {
 				--- ... existing vendors
-				groq = { -- define groq provider
+				groq = {
 					__inherited_from = "openai",
 					api_key_name = "GROQ_API_KEY",
 					endpoint = "https://api.groq.com/openai/v1/",
 					model = "llama-3.3-70b-versatile",
-					max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
+					max_tokens = 32768,
 				},
 			},
 		},
@@ -40,9 +59,9 @@ return {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
-			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			"hrsh7th/nvim-cmp",
+			"nvim-tree/nvim-web-devicons",
+			"zbirenbaum/copilot.lua",
 			{
 				-- support for image pasting
 				"HakonHarnes/img-clip.nvim",
