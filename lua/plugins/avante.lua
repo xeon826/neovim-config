@@ -3,37 +3,20 @@ return {
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		lazy = false,
-		version = false,-- set this if you want to always pull the latest change
+		version = false, -- set this if you want to always pull the latest change
 		opts = {
-      rag_service = {
-        enabled = true,
-        host_mount = os.getenv("HOME"),
-        provider = "ollama",
-        llm_model = "llama3",
-        embed_model = "nomic-embed-text",
-        endpoint = "http://172.17.0.1:11434",
-        -- index_patterns = {
-        --   "**/*.lua",
-        --   "**/*.md",
-        --   "**/*.txt",
-        --   "**/*.py",
-        --   -- Add other file patterns you want to index
-        -- },
-        -- exclude_patterns = {
-        --   "**/node_modules/**",
-        --   "**/.git/**",
-        --   -- Add patterns to exclude
-        -- },
-        -- Optional: force reindex on startup
-        -- force_reindex = true,
-      },
-			provider = "claude",
-			claude = {
-				endpoint = "https://api.anthropic.com",
-				model = "claude-3-5-sonnet-20241022",
-				temperature = 0,
-				max_tokens = 8192,
-				disable_tools = false,
+			rag_service = {
+				enabled = false,
+				host_mount = os.getenv("HOME"),
+				provider = "ollama",
+				llm_model = "codellama",
+				embed_model = "nomic-embed-text",
+				endpoint = "http://172.17.0.1:11434",
+			},
+			provider = "ollama",
+			ollama = {
+				endpoint = "http://127.0.0.1:11434", -- Note that there is no /v1 at the end.
+				model = "qwq:32b",
 			},
 			cursor_applying_provider = "groq",
 			behaviour = {
