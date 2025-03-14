@@ -6,31 +6,29 @@ return {
 		version = false, -- set this if you want to always pull the latest change
 		opts = {
 			rag_service = {
-				enabled = false,
-				host_mount = os.getenv("HOME"),
-				provider = "ollama",
-				llm_model = "codellama",
-				embed_model = "nomic-embed-text",
-				endpoint = "http://172.17.0.1:11434",
+				enabled = true, -- Enables the rag service, requires OPENAI_API_KEY to be set
 			},
-			provider = "ollama",
-			ollama = {
-				endpoint = "http://127.0.0.1:11434", -- Note that there is no /v1 at the end.
-				model = "qwq:32b",
+			provider = "claude", -- In this example, use Claude for planning, but you can also use any provider you want.
+			claude = {
+				endpoint = "https://api.anthropic.com",
+				model = "claude-3-5-sonnet-20241022",
+				temperature = 0,
+				max_tokens = 8192,
+        disable_tools = false
 			},
-			cursor_applying_provider = "groq",
+			cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
 			behaviour = {
 				--- ... existing behaviours
-				enable_cursor_planning_mode = true,
+				enable_cursor_planning_mode = true, -- enable cursor planning mode!
 			},
 			vendors = {
 				--- ... existing vendors
-				groq = {
+				groq = { -- define groq provider
 					__inherited_from = "openai",
 					api_key_name = "GROQ_API_KEY",
 					endpoint = "https://api.groq.com/openai/v1/",
 					model = "llama-3.3-70b-versatile",
-					max_tokens = 32768,
+					max_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
 				},
 			},
 		},
@@ -42,9 +40,9 @@ return {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
-			"hrsh7th/nvim-cmp",
-			"nvim-tree/nvim-web-devicons",
-			"zbirenbaum/copilot.lua",
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
 			{
 				-- support for image pasting
 				"HakonHarnes/img-clip.nvim",

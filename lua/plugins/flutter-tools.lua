@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-flutter/flutter-tools.nvim",
     ft = {'dart', 'yaml'},
-    enabled=true,
+    enabled=false,
     init = function()
     end,
 		dependencies = {
