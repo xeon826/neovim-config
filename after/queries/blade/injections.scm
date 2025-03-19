@@ -1,4 +1,20 @@
+
+;; injections.scm
+;; Inject PHP inside Blade `@php ... @endphp` blocks
+((php_statement) @injection.content
+ (#set! injection.language "php"))
+
+;; Inject PHP inside Blade Echo Tags `{{ }}` and `{!! !!}`
+((php_only) @injection.content
+ (#set! injection.language "php"))
+
+;; Inject HTML inside Blade files
 ((text) @injection.content
-    (#not-has-ancestor? @injection.content "envoy")
-    (#set! injection.combined)
-    (#set! injection.language php))
+ (#set! injection.language "html")
+ (#set! injection.combined))
+
+;; Inject JavaScript inside `<script>` blocks
+((text) @injection.content
+ (#set! injection.language "javascript")
+ (#has-ancestor? @injection.content "script"))
+
