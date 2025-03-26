@@ -13,7 +13,7 @@ return {{
     -- Floating terminal
     "voldikss/vim-floaterm",
 		keys = {
-			{ mode={"n", "t"}, "<C-t>", "<cmd>FloatermToggle<cr>", desc = "Toggle floating terminal" },
+			{ mode = {"n", "t"}, "<C-A-t>", "<cmd>FloatermToggle<cr>", desc = "Toggle floating terminal" },
 		},
     config = function(_, opts)
         vim.g.floaterm_title = "Floaterm"
