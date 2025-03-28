@@ -53,13 +53,6 @@ return {
 							stdin = true,
 						}
 					end,
-					-- function()
-					--   return {
-					--     exe = "luafmt",
-					--     args = {"--indent-count", 2, "--stdin"},
-					--     stdin = true
-					--   }
-					-- end
 				},
 				vue = {
 					function()
@@ -76,7 +69,7 @@ return {
 						}
 					end,
 				},
-				rust = { -- Rustfmt
+				rust = { 
 					function()
 						return {
 							exe = "rustfmt",
@@ -85,7 +78,7 @@ return {
 						}
 					end,
 				},
-				swift = { -- Swiftlint
+				swift = { 
 					function()
 						return {
 							exe = "swift-format",
@@ -103,7 +96,7 @@ return {
 						}
 					end,
 				},
-				ruby = { -- Add Ruby formatter (Rubocop)
+				ruby = { 
 					function()
 						return {
 							exe = "rubocop",
@@ -148,9 +141,23 @@ return {
 						}
 					end,
 				},
+				php = {
+					function()
+						return {
+							exe = "~/.config/composer/vendor/bin/php-cs-fixer",
+							args = {
+								"fix",
+								"--rules=@PSR12",
+								"--using-cache=no",
+								"--no-interaction",
+								"--quiet",
+								vim.api.nvim_buf_get_name(0),
+							},
+							stdin = false,
+						}
+					end,
+				},
 				["*"] = {
-					-- require("formatter.filetypes.any").lsp_format,
-					-- require('formatter.filetypes.any').remove_trailing_whitespace
 				},
 			}
 			local commonFT = {
