@@ -8,20 +8,20 @@ return {
 			rag_service = {
 				enabled = false, -- Enables the rag service, requires OPENAI_API_KEY to be set
 			},
-			provider = "claude", -- In this example, use Claude for planning, but you can also use any provider you want.
-			claude = {
-				endpoint = "https://api.anthropic.com",
-				model = "claude-3-5-sonnet-20241022",
-				temperature = 0,
-				max_tokens = 8192,
-        disable_tools = false
-			},
+			provider = "deepseek", -- In this example, use Claude for planning, but you can also use any provider you want.
 			cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
 			behaviour = {
 				--- ... existing behaviours
 				enable_cursor_planning_mode = true, -- enable cursor planning mode!
 			},
 			vendors = {
+        deepseek = {
+          __inherited_from = "openai",
+          api_key_name = "DEEPSEEK_API_KEY",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-coder",
+          max_tokens = 8192,
+        },
 				--- ... existing vendors
 				groq = { -- define groq provider
 					__inherited_from = "openai",
