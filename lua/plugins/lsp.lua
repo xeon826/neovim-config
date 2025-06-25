@@ -103,9 +103,34 @@ return {
 				dartls = {
           enabled = true
         },
+				volar = {  
+					enabled = true,
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" }
+				},
 				ts_ls = {
 					enabled = true,
 					filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+					settings = {
+						javascript = {
+							format = {
+								indentSize = 4,
+								convertTabsToSpaces = true,
+								tabSize = 4,
+							},
+						},
+						typescript = {
+							format = {
+								indentSize = 2,
+								convertTabsToSpaces = true,
+								tabSize = 2,
+							},
+						},
+					},
+					init_options = {
+						preferences = {
+							quotePreference = "single",
+						},
+					},
 				},
 				-- ------------TYPESCRIPT
 				vtsls = {

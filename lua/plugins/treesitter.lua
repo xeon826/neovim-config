@@ -23,7 +23,7 @@ return {{
     }},
     opts = {
         -- A list of parser names, or "all"
-        ensure_installed = {"go", "python", "dockerfile", "json", "yaml", "markdown", "html", "scss", "css", "vim", "jsonc", "blade", "php", "javascript", "dart"},
+        ensure_installed = {"go", "python", "dockerfile", "json", "yaml", "markdown", "html", "scss", "css", "blade", "vim", "jsonc", "php", "javascript", "dart"},
 
         highlight = {
             enable = true,
@@ -51,15 +51,6 @@ return {{
     config = function(_, opts)
         require("nvim-treesitter.configs").setup(opts)
 
-        -- Add blade support using a third-party parser
-        require("nvim-treesitter.parsers").get_parser_configs().blade = {
-            install_info = {
-                url = "https://github.com/EmranMR/tree-sitter-blade",
-                files = {"src/parser.c"},
-                branch = "main"
-            },
-            filetype = "blade"
-        }
     end
 }}
 
