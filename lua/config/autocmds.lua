@@ -34,15 +34,14 @@ autocmd("User", {
   callback = require("lualine").refresh,
 })
 
-autocmd({ "BufWritePost", "BufReadPost" }, {
-  callback = function()
-    local file_extension = vim.fn.expand("%:e")
-    -- Skip linting for .md files
-    if file_extension ~= "md" then
-      require("lint").try_lint()
-    end
-  end,
-})
+-- autocmd({ "BufWritePost", "BufReadPost" }, {
+--   callback = function()
+--     local file_extension = vim.fn.expand("%:e")
+--     if file_extension ~= "md" then
+--       require("lint").try_lint()
+--     end
+--   end,
+-- })
 
 -- autocmd({ "BufWritePost", "BufReadPost" }, {
 --   callback = function()

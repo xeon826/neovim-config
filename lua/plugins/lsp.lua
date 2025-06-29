@@ -100,15 +100,12 @@ return {
 			-- LSP Server Settings
 			servers = {
 				jsonls = {},
-				dartls = {
-          enabled = true
-        },
 				volar = {  
-					enabled = true,
+					enabled = false,
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" }
 				},
 				ts_ls = {
-					enabled = true,
+					enabled = false,
 					filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 					settings = {
 						javascript = {
@@ -134,7 +131,7 @@ return {
 				},
 				-- ------------TYPESCRIPT
 				vtsls = {
-					enabled = false,
+					enabled = true,
 				},
 				-- ------------/TYPESCRIPT
 				dockerls = {},
