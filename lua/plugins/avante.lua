@@ -17,8 +17,9 @@ return {
 		---@type avante.Config
 		opts = {
 			provider = "deepseek",
-			vendors = {
+			providers = {
 				deepseek = {
+          disabled_tools = { "replace_in_file" },
 					__inherited_from = "openai",
 					api_key_name = "DEEPSEEK_API_KEY",
 					endpoint = "https://api.deepseek.com",
