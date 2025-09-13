@@ -11,6 +11,7 @@ return {
 				return "make"
 			end
 		end,
+    enabled = false,
 		event = "VeryLazy",
 		version = false, -- Never set this value to "*"! Never!
 		---@module 'avante'

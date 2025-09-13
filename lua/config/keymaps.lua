@@ -54,7 +54,7 @@ vim.keymap.set("n", "<C-q>", function()
   end
 
   -- Try to close avante if it exists
-  pcall(require("avante").close)
+  -- pcall(require("avante").close)
 
   -- Force close all buffers, including modified ones
   vim.cmd("silent! %bwipeout!")
