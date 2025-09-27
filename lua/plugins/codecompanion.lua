@@ -5,6 +5,7 @@ return { -- lazy.nvim
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
+    enabled = false, -- set to true to enable
 		opts = {
 			-- NOTE: The log_level is in `opts.opts`
 			opts = {

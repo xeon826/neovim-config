@@ -1,10 +1,11 @@
+require('fzf-lua').register_ui_select()
 return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
-    enabled='false',
+    enabled='true',
 		build = "make tiktoken",
 		opts = {
 			model = "gpt-4.1", -- AI model to use
