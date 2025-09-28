@@ -21,6 +21,7 @@ cmd([[
 	filetype plugin indent on
 ]])
 
+g.lsp_diagnostics_virutal_text_align = 'right'
 g.vimtex_view_method = 'mupdf'
 g.vimtex_compiler_method = 'latexmk'
 opt.backspace = {"eol", "start", "indent"} -- allow backspacing over everything in insert mode

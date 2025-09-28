@@ -30,7 +30,7 @@ return {
 		},
 		keys = {
 			{
-				"<leader>t",
+				"<leader>a",
 				mode = { "n", "x", "o" },
 				function()
 					local chat = require("CopilotChat")

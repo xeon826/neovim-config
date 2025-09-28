@@ -105,3 +105,4 @@ autocmd("Filetype", {
     vim.opt_local.spell = true
   end
 })
+

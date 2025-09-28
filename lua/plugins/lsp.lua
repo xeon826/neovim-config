@@ -10,14 +10,32 @@
 -- Description: LSP setup and config
 -- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+-- vim.diagnostic.config({
+--   virtual_lines = false,  -- Show inline virtual text
+--   virtual_text = true,  -- Show inline virtual text
+--   signs = false,         -- Show signs in the gutter
+--   underline = true,     -- Underline words with errors
+--   update_in_insert = false, -- Only update diagnostics outside insert mode
+--   severity_sort = false, -- Sort diagnostics by severity
+-- })
 return {
 	{
 		-- Mason
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
 		keys = {
-			{ "<leader>td", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { mode = "n", desc = "Toggle diagnostics", silent = true } },
-			{ "<leader>lr", "<cmd>LspRestart<cr>", { mode = "n", desc = "Restart LSP servers silently", silent = true } },
+			{
+				"<leader>td",
+				function()
+					vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+				end,
+				{ mode = "n", desc = "Toggle diagnostics", silent = true },
+			},
+			{
+				"<leader>lr",
+				"<cmd>LspRestart<cr>",
+				{ mode = "n", desc = "Restart LSP servers silently", silent = true },
+			},
 			{ "[d", vim.diagnostic.goto_prev, { mode = "n", desc = "Go to previous diagnostic" } },
 			{ "]d", vim.diagnostic.goto_next, { mode = "n", desc = "Go to next diagnostic" } },
 			{
@@ -25,14 +43,14 @@ return {
 				function()
 					vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
 				end,
-				{ mode = "n", desc = "Go to previous error" }
+				{ mode = "n", desc = "Go to previous error" },
 			},
 			{
 				"]D",
 				function()
 					vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
 				end,
-				{ mode = "n", desc = "Go to next error" }
+				{ mode = "n", desc = "Go to next error" },
 			},
 			{ "K", vim.lsp.buf.hover, { mode = "n", desc = "Show documentation for what is under cursor" } },
 			{ "<leader>ca", vim.lsp.buf.code_action, { mode = { "n", "v" }, desc = "See available code actions" } },
@@ -100,9 +118,9 @@ return {
 			-- LSP Server Settings
 			servers = {
 				jsonls = {},
-				volar = {  
+				volar = {
 					enabled = false,
-					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" }
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 				},
 				ts_ls = {
 					enabled = false,
@@ -130,9 +148,11 @@ return {
 					},
 				},
 				-- ------------TYPESCRIPT
-				vtsls = {
-					enabled = true,
-				},
+				-- vtsls = {
+				-- 	enabled = false,
+				--       virtual_text = false,
+				--       virtual_lines = true
+				-- },
 				-- ------------/TYPESCRIPT
 				dockerls = {},
 				bashls = {},
@@ -178,12 +198,12 @@ return {
 			setup = {
 				ts_ls = function()
 					-- disable tsserver
-					require("lspconfig").ts_ls.setup({})
+					-- require("lspconfig").ts_ls.setup({ virtual_lines = true, virtual_text = true })
 				end,
-				vtsls = function(_, opts)
-					require("lspconfig").vtsls.setup({})
-					return false
-				end,
+				-- vtsls = function(_, opts)
+				-- 	require("lspconfig").vtsls.setup({virtual_text = false, virtual_lines = false})
+				-- 	return false
+				-- end,
 			},
 		},
 		config = function(_, opts)
@@ -220,7 +240,7 @@ return {
 			local available = mlsp.get_available_servers()
 
 			-- local ensure_installed = { "pyright" } ---@type string[]
-			local ensure_installed = { } ---@type string[]
+			local ensure_installed = {} ---@type string[]
 			for server, server_opts in pairs(servers) do
 				if server_opts then
 					server_opts = server_opts == true and {} or server_opts
@@ -370,14 +390,18 @@ return {
 					end, { "i", "s" }),
 				},
 				sources = {
+					{ name = "copilot", group_index = 1 },
 					{
 						name = "nvim_lsp",
+						groupd_index = 2,
 					},
 					{
 						name = "luasnip",
+						groupd_index = 2,
 					},
 					{
 						name = "buffer",
+						groupd_index = 2,
 						option = {
 							-- Avoid accidentally running on big files
 							get_bufnrs = function()
@@ -392,9 +416,11 @@ return {
 					},
 					{
 						name = "nvim_lua",
+						groupd_index = 2,
 					},
 					{
 						name = "path",
+						groupd_index = 2,
 					},
 				},
 			}
