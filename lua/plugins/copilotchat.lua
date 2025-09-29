@@ -47,6 +47,15 @@ return {
 				end,
 				desc = "Reset Copilot Chat",
 			},
+			{
+				"<leader>cpa",
+				mode = { "n", "x", "o" },
+				function()
+					local chat = require("CopilotChat")
+          chat.select_prompt(config) 
+				end,
+				desc = "Reset Copilot Chat",
+			},
 		},
 	},
 }

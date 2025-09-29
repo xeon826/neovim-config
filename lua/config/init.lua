@@ -40,6 +40,9 @@ vim.g.jukit_mappings_ext_enabled = {"py", "ipynb"}
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
 
 vim.api.nvim_set_hl(0, "CurSearch", { fg = "#ffffff", bg = "#2D4F67", bold = true })
+-- In your colorscheme or init.lua
+-- vim.api.nvim_set_hl(0, 'CopilotChatHeader', { fg = '#7C3AED', bold = true })
+-- vim.api.nvim_set_hl(0, 'CopilotChatSeparator', { fg = '#374151' })
 
 -- build spec
 local spec = {{
