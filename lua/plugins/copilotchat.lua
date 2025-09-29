@@ -7,8 +7,25 @@ return {
 		},
 		enabled = "true",
 		build = "make tiktoken",
+		config = function()
+			require("CopilotChat").setup({
+				prompts = {
+					Fix = {
+						prompt = "#diagnostics:current #buffer why am I getting this/these error(s)?",
+						system_prompt = "You are very good at explaining stuff",
+						mapping = "<leader>cpf",
+						description = "Fix the issue in the current buffer while taking into account the diagnostics.",
+					},
+					WithListedFix = {
+						prompt = "#diagnostics:current #buffers:listed why am I getting this/these error(s)?",
+						system_prompt = "You are very good at explaining stuff",
+						mapping = "<leader>cpw",
+						description = "Fix the issue in the current buffer while taking into account the diagnostics as well as all listed buffers.",
+					},
+				},
+			})
+		end,
 		opts = {
-
 			model = "gpt-4.1", -- AI model to use
 			temperature = 0.1, -- Lower = focused, higher = creative
 			window = {
@@ -52,7 +69,7 @@ return {
 				mode = { "n", "x", "o" },
 				function()
 					local chat = require("CopilotChat")
-          chat.select_prompt(config) 
+					chat.select_prompt(config)
 				end,
 				desc = "Reset Copilot Chat",
 			},
