@@ -18,22 +18,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- vim.g.python3_host_prog = '/home/dan/.virtualenvs/neovim/bin/python3'
 vim.g.python3_host_prog = 'python3'
 vim.diagnostic.config({ virtual_text = false, virtual_lines = false }) -- Disable default virtual text
--- vim.g.terminal_emulator = 'kitty'
--- vim.api.nvim_set_var('terminal_emulator', 'kitty')
--- vim.opt.shell = 'kitty'
 
-
--- vim.diagnostic.config({ virtual_text = true, virtual_lines = false }) -- Disable default virtual text
--- vim.diagnostic.config({
---   virtual_lines = false,  -- Show inline virtual text
---   signs = false,         -- Show signs in the gutter
---   underline = true,     -- Underline words with errors
---   update_in_insert = false, -- Only update diagnostics outside insert mode
---   severity_sort = false, -- Sort diagnostics by severity
--- })
 vim.g.copilot_no_tab_map = true
 vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
 vim.g.mapleader = " "
@@ -41,9 +28,6 @@ vim.g.jukit_mappings_ext_enabled = {"py", "ipynb"}
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
 
 vim.api.nvim_set_hl(0, "CurSearch", { fg = "#ffffff", bg = "#2D4F67", bold = true })
--- In your colorscheme or init.lua
--- vim.api.nvim_set_hl(0, 'CopilotChatHeader', { fg = '#7C3AED', bold = true })
--- vim.api.nvim_set_hl(0, 'CopilotChatSeparator', { fg = '#374151' })
 
 -- build spec
 local spec = {{

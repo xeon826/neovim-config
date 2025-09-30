@@ -10,14 +10,6 @@
 -- Description: LSP setup and config
 -- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
--- vim.diagnostic.config({
---   virtual_lines = false,  -- Show inline virtual text
---   virtual_text = true,  -- Show inline virtual text
---   signs = false,         -- Show signs in the gutter
---   underline = true,     -- Underline words with errors
---   update_in_insert = false, -- Only update diagnostics outside insert mode
---   severity_sort = false, -- Sort diagnostics by severity
--- })
 return {
 	{
 		-- Mason
