@@ -20,6 +20,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- vim.g.python3_host_prog = '/home/dan/.virtualenvs/neovim/bin/python3'
 vim.g.python3_host_prog = 'python3'
+vim.diagnostic.config({ virtual_text = false, virtual_lines = false }) -- Disable default virtual text
 -- vim.g.terminal_emulator = 'kitty'
 -- vim.api.nvim_set_var('terminal_emulator', 'kitty')
 -- vim.opt.shell = 'kitty'
