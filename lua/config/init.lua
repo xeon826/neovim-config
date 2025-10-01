@@ -19,8 +19,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.python3_host_prog = 'python3'
-vim.diagnostic.config({ virtual_text = false, virtual_lines = false }) -- Disable default virtual text
-
 vim.g.copilot_no_tab_map = true
 vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
 vim.g.mapleader = " "

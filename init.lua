@@ -2,7 +2,6 @@ if vim.fn.has('nvim-0.8') == 0 then
   error('Need Neovim 0.8+ in order to use this config')
 end
 
-vim.diagnostic.config({ virtual_text = false, virtual_lines = false }) -- Disable default virtual text
 for _, cmd in ipairs({ "git", "rg", { "fd", "fdfind" } }) do
   local name = type(cmd) == "string" and cmd or vim.inspect(cmd)
   local commands = type(cmd) == "string" and { cmd } or cmd
