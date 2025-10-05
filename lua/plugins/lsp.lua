@@ -75,6 +75,12 @@ return {
 			require("mason").setup(opts)
 		end,
 	},
+  {
+    "nvim-java/nvim-java",
+    ft = { "java" },
+    config = function()
+    end,
+  },
 	{
 		-- LSP - Quickstart configs for Nvim LSP
 		"neovim/nvim-lspconfig",
@@ -109,6 +115,7 @@ return {
 			},
 			-- LSP Server Settings
 			servers = {
+        jdtls = {},
 				jsonls = {},
 				volar = {
 					enabled = false,
@@ -199,6 +206,7 @@ return {
 			},
 		},
 		config = function(_, opts)
+      require("java").setup()
 			local servers = opts.servers
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
