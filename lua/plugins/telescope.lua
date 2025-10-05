@@ -175,7 +175,14 @@ return {
 			{ mode = "n", "gd", "<cmd>Telescope lsp_definitions<CR>", desc = "Show LSP definitions" },
 			{ mode = "n", "gi", "<cmd>Telescope lsp_implementations<CR>", desc = "Show LSP implementations" },
 			{ mode = "n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", desc = "Show LSP type definitions" },
-			{ mode="n", "<leader>:", function() require("telescope.builtin").command_history() end, desc = "Command History" },
+			{
+				mode = "n",
+				"<leader>:",
+				function()
+					require("telescope.builtin").command_history()
+				end,
+				desc = "Command History",
+			},
 			{
 				mode = "n",
 				"<leader>sc",
@@ -183,6 +190,46 @@ return {
 					require("telescope.builtin").commands()
 				end,
 				desc = "Command History",
+			},
+			{
+				mode = "n",
+				"<leader>uT",
+				function()
+					require("telescope.builtin").treesitter()
+				end,
+				desc = "Treesitter",
+			},
+			{
+				mode = "n",
+				"<leader>si",
+				function()
+					require("telescope.builtin").highlights()
+				end,
+				desc = "Highlights",
+			},
+			{
+				mode = "n",
+				"<leader>sj",
+				function()
+					require("telescope.builtin").jumplist()
+				end,
+				desc = "Jumplist",
+			},
+			{
+				mode = "n",
+				"<leader>sM",
+				function()
+					require("telescope.builtin").man_pages()
+				end,
+				desc = "Man Pages",
+			},
+			{
+				mode = "n",
+				"<leader>su",
+				function()
+					require("telescope.builtin").undo()
+				end,
+				desc = "Undo History",
 			},
 			"nvim-lua/plenary.nvim",
 			{
