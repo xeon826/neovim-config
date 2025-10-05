@@ -78,7 +78,9 @@ return {
 			bufferline.setup({
 				options = {
 					separator_styling = "padded_slope",
+          indicator = { style = 'underline' }
 				},
+
 			})
 		end,
 		event = "VimEnter",
