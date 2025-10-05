@@ -83,19 +83,20 @@ return {
 				desc = "Git Browse",
 				mode = { "n", "v" },
 			},
-			-- {
-			-- 	"<leader>un",
-			-- 	function()
-			-- 		Snacks.notifier.hide()
-			-- 	end,
-			-- 	desc = "Dismiss All Notifications",
-			-- },
+			{
+				"<leader>un",
+				function()
+					Snacks.notifier.hide()
+				end,
+				desc = "Dismiss All Notifications",
+			},
 			{
 				"<c-/>",
 				function()
 					Snacks.terminal()
 				end,
 				desc = "Toggle Terminal",
+				mode = { "n", "t" },
 			},
 			{
 				"<c-_>",

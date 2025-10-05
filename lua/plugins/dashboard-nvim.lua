@@ -23,6 +23,14 @@ return {
 							end,
 							key = "f",
 						},
+						{
+							desc = "Live Grep",
+							group = "Label",
+							action = function()
+								require("telescope.builtin").live_grep()
+							end,
+							key = "/",
+						},
 					},
 				},
 			})

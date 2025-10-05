@@ -123,7 +123,7 @@ return {
 
 			{
 				mode = "n",
-				"<leader>ff",
+				"<leader>f",
 				function()
 					require("telescope.builtin").find_files()
 				end,
@@ -131,7 +131,7 @@ return {
 			},
 			{
 				mode = "n",
-				"<leader>fg",
+				"<leader>/",
 				function()
 					require("telescope.builtin").live_grep()
 				end,
@@ -139,7 +139,7 @@ return {
 			},
 			{
 				mode = "n",
-				"<leader>fr",
+				"<leader>r",
 				function()
 					require("telescope.builtin").resume()
 				end,
@@ -147,7 +147,7 @@ return {
 			},
 			{
 				mode = "n",
-				"<leader>fb",
+				"<leader>,",
 				function()
 					require("telescope.builtin").buffers()
 				end,
@@ -245,13 +245,25 @@ return {
 						i = {
 							["<C-n>"] = actions.cycle_previewers_next,
 							["<C-b>"] = actions.cycle_previewers_prev,
+							["<C-o>"] = function(prompt_bufnr)
+								require("telescope.actions").select_default(prompt_bufnr)
+								require("telescope.builtin").resume()
+							end,
+							["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+						},
+						n = {
+							["<C-[>"] = actions.close,
+							["<C-o>"] = function(prompt_bufnr)
+								require("telescope.actions").select_default(prompt_bufnr)
+								vim.cmd("normal! ")
+								require("telescope.builtin").resume()
+							end,
 						},
 					},
 				},
 			})
 			-- To get fzf loaded and working with telescope, you need to call
 			-- load_extension, somewhere after setup function:
-			require("telescope").load_extension("fzf")
 		end,
 	},
 }
