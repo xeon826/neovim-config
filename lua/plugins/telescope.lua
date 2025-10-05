@@ -255,7 +255,6 @@ return {
 							["<C-[>"] = actions.close,
 							["<C-o>"] = function(prompt_bufnr)
 								require("telescope.actions").select_default(prompt_bufnr)
-								vim.cmd("normal! ")
 								require("telescope.builtin").resume()
 							end,
 						},
