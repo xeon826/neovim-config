@@ -6,17 +6,17 @@ return {
 		---@type snacks.Config
 		opts = {
 			bigfile = { enabled = true },
-			dashboard = { enabled = true },
-			explorer = { enabled = true },
+			dashboard = { enabled = false },
+			explorer = { enabled = false },
 			indent = { enabled = true },
 			input = { enabled = true },
 			notifier = {
 				enabled = true,
 				timeout = 3000,
 			},
-			picker = { enabled = true },
+			picker = { enabled = false },
 			quickfile = { enabled = true },
-			scope = { enabled = true },
+			scope = { enabled = false },
 			scroll = {
 				enabled = true,
 				animate = {
@@ -40,27 +40,27 @@ return {
 		},
 		keys = {
 			-- Top Pickers & Explorer
-			{
-				"<leader><space>",
-				function()
-					Snacks.picker.smart()
-				end,
-				desc = "Smart Find Files",
-			},
-			{
-				"<leader>,",
-				function()
-					Snacks.picker.buffers()
-				end,
-				desc = "Buffers",
-			},
-			{
-				"<leader>/",
-				function()
-					Snacks.picker.grep()
-				end,
-				desc = "Grep",
-			},
+			-- {
+			-- 	"<leader><space>",
+			-- 	function()
+			-- 		Snacks.picker.smart()
+			-- 	end,
+			-- 	desc = "Smart Find Files",
+			-- },
+			-- {
+			-- 	"<leader>,",
+			-- 	function()
+			-- 		Snacks.picker.buffers()
+			-- 	end,
+			-- 	desc = "Buffers",
+			-- },
+			-- {
+			-- 	"<leader>/",
+			-- 	function()
+			-- 		Snacks.picker.grep()
+			-- 	end,
+			-- 	desc = "Grep",
+			-- },
 			{
 				"<leader>:",
 				function()
@@ -462,20 +462,13 @@ return {
 				desc = "Git Browse",
 				mode = { "n", "v" },
 			},
-			{
-				"<leader>gg",
-				function()
-					Snacks.lazygit()
-				end,
-				desc = "Lazygit",
-			},
-			{
-				"<leader>un",
-				function()
-					Snacks.notifier.hide()
-				end,
-				desc = "Dismiss All Notifications",
-			},
+			-- {
+			-- 	"<leader>un",
+			-- 	function()
+			-- 		Snacks.notifier.hide()
+			-- 	end,
+			-- 	desc = "Dismiss All Notifications",
+			-- },
 			{
 				"<c-/>",
 				function()

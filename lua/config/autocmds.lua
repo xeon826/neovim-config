@@ -34,53 +34,6 @@ autocmd("User", {
   callback = require("lualine").refresh,
 })
 
--- autocmd({ "BufWritePost", "BufReadPost" }, {
---   callback = function()
---     local file_extension = vim.fn.expand("%:e")
---     if file_extension ~= "md" then
---       require("lint").try_lint()
---     end
---   end,
--- })
-
--- autocmd({ "BufWritePost", "BufReadPost" }, {
---   callback = function()
---     local file_extension = vim.fn.expand("%:e")
---     -- Skip linting for .md files
---     if file_extension ~= "md" then
---       vim.defer_fn(function()
---         require("lint").try_lint()
---       end, 100)  -- Delay by 100ms (you can adjust this as needed)
---     end
---   end,
--- })
-
-
-
--- autocmd({ "BufWritePost", "BufReadPost" }, {
---   callback = function()
---     local file_extension = vim.fn.expand("%:e")
---     -- Skip linting for .md files
---     if file_extension ~= "md" then
---       require("lint").try_lint()
---     end
---   end,
--- })
-
-
--- Remove whitespace on save
--- autocmd("BufWritePre", {
---   pattern = "",
---   command = ":%s/\\s\\+$//e"
--- })
-
--- Auto format on save using the attached (optionally filtered) language servere clients
--- https://neovim.io/doc/user/lsp.html#vim.lsp.buf.format()
--- autocmd("BufWritePre", {
---     pattern = "",
---     command = ":silent lua vim.lsp.buf.format()"
--- })
-
 -- Don"t auto commenting new lines
 autocmd("BufEnter", {
   pattern = "",

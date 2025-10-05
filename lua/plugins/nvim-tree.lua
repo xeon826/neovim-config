@@ -13,6 +13,7 @@
 return {{
     -- File explore
     -- nvim-tree.lua - A file explorer tree for neovim written in lua
+  enabled=true,
     "nvim-tree/nvim-tree.lua",
 		keys = {
 			{ mode="n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle tree" } },
