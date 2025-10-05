@@ -11,7 +11,7 @@ return {
 			require("CopilotChat").setup(opts)
 		end,
 		opts = {
-			model = "gpt-4.1", -- AI model to use
+			model = "claude-3.5-sonnet", -- AI model to use
 			temperature = 0.1, -- Lower = focused, higher = creative
 			prompts = {
 				Fix = {
