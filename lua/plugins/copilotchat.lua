@@ -50,27 +50,27 @@ return {
 				mode = { "n", "x", "o" },
 				function()
 					local chat = require("CopilotChat")
-					chat.toggle(config)
+					chat.toggle({ window = { layout = "float" } })
 				end,
-				desc = "Toggle Copilot",
+				desc = "Toggle Copilot Float",
 			},
 			{
-				"<leader>cpr",
+				"<leader>av",
 				mode = { "n", "x", "o" },
 				function()
 					local chat = require("CopilotChat")
-					chat.reset()
+					chat.toggle({ window = { layout = "vertical" } })
 				end,
-				desc = "Reset Copilot Chat",
+				desc = "Toggle Copilot Vertical",
 			},
 			{
-				"<leader>cpa",
+				"<leader>ah",
 				mode = { "n", "x", "o" },
 				function()
 					local chat = require("CopilotChat")
-					chat.select_prompt(config)
+					chat.toggle({ window = { layout = "horizontal" } })
 				end,
-				desc = "Reset Copilot Chat",
+				desc = "Toggle Copilot Horizontal",
 			},
 		},
 	},
