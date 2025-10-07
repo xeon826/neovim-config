@@ -5,6 +5,63 @@ return {
 		opts = {
 			log_level = "DEBUG",
 		},
+
+		strategies = {
+			chat = {
+				roles = {
+					user = "dan",
+				},
+				keymaps = {
+					send = {
+						modes = {
+							i = { "<C-CR>", "<C-s>" },
+						},
+					},
+					completion = {
+						modes = {
+							i = "<C-x>",
+						},
+					},
+				},
+				slash_commands = {
+					["buffer"] = {
+						keymaps = {
+							modes = {
+								i = "<C-b>",
+							},
+						},
+						opts = {
+							provider = "snacks",
+						},
+					},
+					["fetch"] = {
+						keymaps = {
+							modes = {
+								i = "<C-f>",
+							},
+						},
+					},
+					["file"] = {
+						opts = {
+							provider = "snacks",
+						},
+					},
+					["help"] = {
+						opts = {
+							provider = "snacks",
+							max_lines = 1000,
+						},
+					},
+					["image"] = {
+						keymaps = {
+							modes = {
+								i = "<C-i>",
+							},
+						},
+					},
+				},
+			},
+		},
 		extensions = {
 			mcphub = {
 				callback = "mcphub.extensions.codecompanion",
@@ -16,7 +73,6 @@ return {
 					show_server_tools_in_chat = true,
 				},
 			},
-			spinner = {},
 		},
 	},
 	keys = {
