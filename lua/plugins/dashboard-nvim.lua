@@ -31,6 +31,14 @@ return {
 							end,
 							key = "/",
 						},
+						{
+							desc = "Lazygit",
+							group = "Label",
+							action = function()
+								vim.cmd("LazyGit")
+							end,
+							key = "g",
+						},
 					},
 				},
 			})
