@@ -3,37 +3,54 @@ return {
 		"yetone/avante.nvim",
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		-- ⚠️ must add this setting! ! !
-		build = function()
-			-- conditionally use the correct build system for the current OS
-			if vim.fn.has("win32") == 1 then
-				return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-			else
-				return "make"
-			end
-		end,
-    enabled = false,
+		build = vim.fn.has("win32") ~= 0
+				and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+			or "make",
 		event = "VeryLazy",
+    enabled=false,
 		version = false, -- Never set this value to "*"! Never!
 		---@module 'avante'
 		---@type avante.Config
 		opts = {
-			provider = "deepseek",
+			provider = "copilot",
 			providers = {
-				deepseek = {
-          disabled_tools = { "replace_in_file" },
-					__inherited_from = "openai",
-					api_key_name = "DEEPSEEK_API_KEY",
-					endpoint = "https://api.deepseek.com",
-					model = "deepseek-coder",
-					max_tokens = 8192,
+				copilot = {
+					model = "gpt-4o-2024-11-20",
+					timeout = 30000,
+					extra_request_body = {
+						temperature = 0.75,
+						max_tokens = 64000, -- Reduce max tokens for faster generation
+					},
 				},
+			},
+			system_prompt = function()
+				local hub = require("mcphub").get_hub_instance()
+				return hub and hub:get_active_servers_prompt() or ""
+			end,
+			-- Using function prevents requiring mcphub before it's loaded
+			custom_tools = function()
+				return {
+					require("mcphub.extensions.avante").mcp_tool(),
+				}
+			end,
+			disabled_tools = {
+				"list_files", -- Built-in file operations
+				"search_files",
+				"read_file",
+				"create_file",
+				"rename_file",
+				"delete_file",
+				"create_dir",
+				"rename_dir",
+				"delete_dir",
+				"bash", -- Built-in terminal access
 			},
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 			--- The below dependencies are optional,
-			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-mini/mini.pick", -- for file_selector provider mini.pick
 			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 			"ibhagwan/fzf-lua", -- for file_selector provider fzf

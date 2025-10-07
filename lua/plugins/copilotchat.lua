@@ -4,7 +4,7 @@ return {
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
-		enabled = "true",
+		enabled = false,
 		build = "make tiktoken",
 		config = function(_, opts)
 			require("CopilotChat").setup(opts)
@@ -31,12 +31,12 @@ return {
 				layout = "vertical",
 				height = 20, -- Fixed height in rows
 				border = "rounded", -- 'single', 'double', 'rounded', 'solid'
-				title = "🤖 AI Assistant",
+				title = "  AI Assistant",
 				zindex = 100, -- Ensure window stays on top
 			},
 			headers = {
 				user = "👤 You",
-				assistant = "🤖 Copilot",
+				assistant = "  Copilot",
 				tool = "🔧 Tool",
 			},
 			separator = "━━",
