@@ -9,7 +9,7 @@ return {
 		strategies = {
 			chat = {
 				roles = {
-					user = "dan",
+					user = "dan the man",
 				},
 				keymaps = {
 					send = {
