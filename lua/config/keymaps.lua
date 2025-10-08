@@ -32,4 +32,4 @@ vim.keymap.set("n", "<C-[>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
 
-vim.keymap.set("n", "<C-q>", "<cmd>wqall!<cr>", { desc = "Close neovim" })
+vim.keymap.set("n", "<C-q>", "<cmd>qa!<cr>", { desc = "Close neovim" })
