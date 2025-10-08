@@ -75,12 +75,11 @@ return {
 			require("mason").setup(opts)
 		end,
 	},
-  {
-    "nvim-java/nvim-java",
-    ft = { "java" },
-    config = function()
-    end,
-  },
+	{
+		"nvim-java/nvim-java",
+		ft = { "java" },
+		config = function() end,
+	},
 	{
 		-- LSP - Quickstart configs for Nvim LSP
 		"neovim/nvim-lspconfig",
@@ -115,7 +114,7 @@ return {
 			},
 			-- LSP Server Settings
 			servers = {
-        jdtls = {},
+				jdtls = {},
 				jsonls = {},
 				volar = {
 					enabled = false,
@@ -195,18 +194,11 @@ return {
 			-- you can do any additional lsp server setup here
 			-- return true if you don"t want this server to be setup with lspconfig
 			setup = {
-				ts_ls = function()
-					-- disable tsserver
-					-- require("lspconfig").ts_ls.setup({ virtual_lines = true, virtual_text = true })
-				end,
-				-- vtsls = function(_, opts)
-				-- 	require("lspconfig").vtsls.setup({virtual_text = false, virtual_lines = false})
-				-- 	return false
-				-- end,
+				ts_ls = {},
 			},
 		},
 		config = function(_, opts)
-      require("java").setup()
+			require("java").setup()
 			local servers = opts.servers
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -225,7 +217,7 @@ return {
 						return
 					end
 				end
-				require("lspconfig")[server].setup(server_opts)
+				vim.lsp.config(server, server_opts)
 			end
 
 			-- temp fix for lspconfig rename
