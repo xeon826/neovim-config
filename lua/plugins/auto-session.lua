@@ -13,7 +13,7 @@ return {
 	---@module "auto-session"
 	---@type AutoSession.Config
 	opts = {
-		auto_save = true,
+		auto_save = false,
 		auto_restore = false,
 		custom_session_tag = function()
 			return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
