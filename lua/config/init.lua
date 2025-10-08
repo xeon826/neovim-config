@@ -17,7 +17,7 @@ if not vim.loop.fs_stat(lazypath) then
          lazypath})
 end
 vim.opt.rtp:prepend(lazypath)
-
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.g.python3_host_prog = 'python3'
 vim.g.copilot_no_tab_map = true
 vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
