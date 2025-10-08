@@ -11,7 +11,7 @@ return {
 	},
 	keys = {
 		{ mode = "n", "<leader>gch", utils.my_git_bcommits, desc = "Find Files" },
-		{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		{ "<C-g>", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 	},
 	-- optional for floating window border decoration
 	dependencies = {
