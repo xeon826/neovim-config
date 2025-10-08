@@ -23,8 +23,8 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
         if require("nvim-tree.api").tree.is_visible() then
             require("nvim-tree.api").tree.close()
         end
-        local cwd_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-        vim.cmd("AutoSession save " .. cwd_name)
+        local cwd_path = vim.fn.getcwd()
+        vim.cmd("AutoSession save " .. cwd_path)
     end,
 })
 -- Highlight on yank
