@@ -1,5 +1,6 @@
 return {
   "rmagatti/auto-session",
+  enabled=true,
   lazy = false,
   keys = {
     -- Will use Telescope if installed or a vim.ui.select picker otherwise
@@ -12,6 +13,8 @@ return {
   ---@module "auto-session"
   ---@type AutoSession.Config
   opts = {
+    auto_save = true,
+    auto_restore = false,
     -- The following are already the default values, no need to provide them if these are already the settings you want.
     session_lens = {
       picker = nil, -- "telescope"|"snacks"|"fzf"|"select"|nil Pickers are detected automatically but you can also manually choose one. Falls back to vim.ui.select

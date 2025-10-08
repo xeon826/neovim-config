@@ -8,22 +8,7 @@
 --
 -- File: config/keymaps.lua
 -- Description: Key mapping configs
--- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
-local utils = require("config/utils")
--- Close all windows and exit from Neovim with <leader> and q
--- vim.keymap.set("n", "<leader>qa", ":qa!<CR>", {})
--- Fast saving with <leader> and s
--- vim.keymap.set("n", "<leader>s", ":w<CR>", {})
--- vim.keymap.set("n", "<leader>wh", "<C-w>h", {})
--- vim.keymap.set("n", "<leader>wj", "<C-w>j", {})
--- vim.keymap.set("n", "<leader>wk", "<C-w>k", {})
--- vim.keymap.set("n", "<leader>wl", "<C-w>l", {})
--- vim.keymap.set(
--- 	"n",
--- 	"<leader>ad",
--- 	':lua vim.fn.system("rm -Rf ~/.local/state/nvim/avante")<CR>',
--- 	{ noremap = true, silent = true, desc = "Clear all avante todos" }
--- )
+-- Author: Joshua WIlkeson
 -- Move around splits
 vim.keymap.set({ "i", "n" }, "<C-h>", "<C-w>h")
 vim.keymap.set({ "i", "n" }, "<C-l>", "<C-w>l")
@@ -47,24 +32,4 @@ vim.keymap.set("n", "<C-[>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
 
-vim.keymap.set("n", "<C-q>", function()
-	-- First try to close any floating windows
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local config = vim.api.nvim_win_get_config(win)
-		if config.relative ~= "" then -- Is floating window
-			vim.api.nvim_win_close(win, false)
-		end
-	end
-
-	-- Try to close avante if it exists
-	-- pcall(require("avante").close)
-
-	-- Force close all buffers, including modified ones
-	vim.cmd("silent! %bwipeout!")
-
-	-- Close any remaining plugin windows/buffers
-	vim.cmd("silent! tabdo wincmd c")
-
-	-- Finally quit
-	vim.cmd("quit!")
-end, { desc = "Quit All" })
+vim.keymap.set("n", "<C-q>", "<cmd>wqall!<cr>", { desc = "Close neovim" })
