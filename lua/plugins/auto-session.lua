@@ -15,6 +15,9 @@ return {
   opts = {
     auto_save = true,
     auto_restore = false,
+    custom_session_tag = function()
+      return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+    end,
     -- The following are already the default values, no need to provide them if these are already the settings you want.
     session_lens = {
       picker = nil, -- "telescope"|"snacks"|"fzf"|"select"|nil Pickers are detected automatically but you can also manually choose one. Falls back to vim.ui.select
