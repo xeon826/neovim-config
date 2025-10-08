@@ -22,3 +22,4 @@ end
 
 -- Load main config
 require("config")
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
