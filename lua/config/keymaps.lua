@@ -23,6 +23,7 @@ vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = 
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
 vim.keymap.set("n", "<leader>ti", "A # type: ignore<esc>", { desc = "Insert mypy type ignore at end of line" })
 vim.keymap.set("n", "<leader>ch", "<cmd>checkhealth<cr>", { desc = "Run checkhealth" })
+vim.keymap.set("n", "<C-b>", ":cd ..<CR>", { noremap = true, silent = true, desc = "Change directory to parent" })
 
 vim.keymap.set("n", "<Esc>", function()
 	vim.cmd("nohlsearch")
