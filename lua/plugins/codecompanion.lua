@@ -92,7 +92,11 @@ return {
 		{
 			"ravitemer/mcphub.nvim",
 			build = "/usr/bin/npm install -g mcp-hub@latest",
-			config = true,
+			config = {
+				global_env = {
+					GITHUB_PERSONAL_ACCESS_TOKEN = os.getenv("GITHUB_PERSONAL_ACCESS_TOKEN"),
+				},
+			},
 		},
 	},
 }
