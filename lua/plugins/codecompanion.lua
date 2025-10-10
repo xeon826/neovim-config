@@ -96,7 +96,7 @@ return {
 				global_env = {
 					GITHUB_PERSONAL_ACCESS_TOKEN = os.getenv("GITHUB_PERSONAL_ACCESS_TOKEN"),
 					SLACK_MCP_XOXC_TOKEN = os.getenv("SLACK_MCP_XOXC_TOKEN"),
-					SLACK_MCP_XOXd_TOKEN = os.getenv("SLACK_MCP_XOXd_TOKEN"),
+					SLACK_MCP_XOXD_TOKEN = os.getenv("SLACK_MCP_XOXD_TOKEN"),
 				},
 			},
 		},
