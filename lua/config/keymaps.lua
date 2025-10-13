@@ -35,3 +35,4 @@ vim.keymap.set("n", "<C-[>", function()
 end, { desc = "Remove highlights" })
 
 vim.keymap.set("n", "<C-q>", "<cmd>qa!<cr>", { desc = "Close neovim" })
+vim.keymap.set("n", "<leader>mi", ":MCPHub<CR>", { noremap = true, silent = true, desc = "Run MCPHub insert_edit_into_file" })
