@@ -155,9 +155,8 @@ return {
 				dockerls = {},
 				bashls = {},
 				-- gopls = {},
-				ruff = {},
+				-- ruff = {},
 				pylsp = {
-					enabled = false,
 					settings = {
 						pylsp = {
 							configurationSources = {},
