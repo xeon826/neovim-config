@@ -115,6 +115,7 @@ return {
 			config = {
 				global_env = {
 					"GITHUB_PERSONAL_ACCESS_TOKEN",
+					"FIRECRAWL_API_KEY",
 				},
 			},
 		},
