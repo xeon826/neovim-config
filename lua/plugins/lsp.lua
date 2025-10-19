@@ -155,7 +155,7 @@ return {
 				dockerls = {},
 				bashls = {},
 				-- gopls = {},
-				-- ruff = {},
+				ruff = {},
 				pylsp = {
 					settings = {
 						pylsp = {
@@ -197,7 +197,7 @@ return {
 			},
 		},
 		config = function(_, opts)
-			require("java").setup()
+			-- require("java").setup()
 			local servers = opts.servers
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())

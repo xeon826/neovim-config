@@ -1,22 +1,22 @@
-local env_path = vim.fn.getcwd() .. "/.env"
-local function load_env_file(path)
-	local loaded = {}
-	local file = io.open(path, "r")
-	if not file then
-		return loaded
-	end
-	for line in file:lines() do
-		local key, value = line:match("^%s*([%w_]+)%s*=%s*(.+)%s*$")
-		if key and value then
-			vim.fn.setenv(key, value)
-			loaded[key] = value
-		end
-	end
-	file:close()
-	return loaded
-end
+-- local env_path = vim.fn.getcwd() .. "/.env"
+-- local function load_env_file(path)
+-- 	local loaded = {}
+-- 	local file = io.open(path, "r")
+-- 	if not file then
+-- 		return loaded
+-- 	end
+-- 	for line in file:lines() do
+-- 		local key, value = line:match("^%s*([%w_]+)%s*=%s*(.+)%s*$")
+-- 		if key and value then
+-- 			vim.fn.setenv(key, value)
+-- 			loaded[key] = value
+-- 		end
+-- 	end
+-- 	file:close()
+-- 	return loaded
+-- end
 
-local loaded_env = load_env_file(env_path)
+-- local loaded_env = load_env_file(env_path)
 -- print(vim.inspect(loaded_env))
 return {
 	"olimorris/codecompanion.nvim",
