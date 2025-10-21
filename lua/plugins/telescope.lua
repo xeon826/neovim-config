@@ -10,11 +10,11 @@
 -- Description: nvim-telescope config
 -- Author: Kien Nguyen-Tuan <kiennt2609@gmail.com>
 return {
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
 	{
 		-- Telescope
 		-- Find, Filter, Preview, Pick. All lua, all the time.
 		"nvim-telescope/telescope.nvim",
+    enabled=false,
 		keys = {
 			{
 				mode = "n",
@@ -232,10 +232,6 @@ return {
 				desc = "Undo History",
 			},
 			"nvim-lua/plenary.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-			},
 		},
 		config = function(_, opts)
 			local actions = require("telescope.actions")
