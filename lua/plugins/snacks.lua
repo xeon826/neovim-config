@@ -90,14 +90,14 @@ return {
 				end,
 				desc = "Dismiss All Notifications",
 			},
-			{
-				"<c-/>",
-				function()
-					Snacks.terminal()
-				end,
-				desc = "Toggle Terminal",
-				mode = { "n", "t" },
-			},
+			-- {
+			-- 	"<c-/>",
+			-- 	function()
+			-- 		Snacks.terminal()
+			-- 	end,
+			-- 	desc = "Toggle Terminal",
+			-- 	mode = { "n", "t" },
+			-- },
 			{
 				"<c-_>",
 				function()
