@@ -16,6 +16,7 @@ if not vim.loop.fs_stat(lazypath) then
         {"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
          lazypath})
 end
+
 vim.opt.rtp:prepend(lazypath)
 vim.g.python3_host_prog = 'python3'
 vim.g.rooter_silent_chdir = 1
@@ -46,7 +47,8 @@ require("lazy").setup({
     spec = spec,
     lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
     rocks = {
-        hererocks = true,  -- recommended if you do not have global installation of Lua 5.1.
+      enabled=false
+        -- hererocks = true,  -- recommended if you do not have global installation of Lua 5.1.
     },
     defaults = {
         lazy = false, -- should plugins be lazy-loaded?
