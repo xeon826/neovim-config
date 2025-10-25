@@ -34,6 +34,14 @@ return {
 							key = "e",
 						},
 						{
+							desc = "New Blank Buffer",
+							group = "Label",
+							action = function()
+								vim.cmd("enew")
+							end,
+							key = "b",
+						},
+						{
 							desc = "Find Files (Telescope)",
 							group = "Label",
 							action = function()

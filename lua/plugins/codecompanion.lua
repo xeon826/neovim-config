@@ -1,3 +1,8 @@
+local constants = {
+  LLM_ROLE = "llm",
+  USER_ROLE = "user",
+  SYSTEM_ROLE = "system",
+}
 return {
 	"olimorris/codecompanion.nvim",
 	event = "VeryLazy",
@@ -71,46 +76,58 @@ return {
 			},
 		},
 		prompt_library = {
-			["Test and Fix"] = {
+			["Edit<->Test workflow"] = {
 				strategy = "workflow",
-				description = "Run tests in a file, analyze failures, and propose/implement fixes until tests pass.",
+				description = "Use a workflow to repeatedly edit then test code",
 				opts = {
-					adapter = {
-						name = "deepseek-coder",
-					},
-					short_name = "tf",
+					index = 5,
+					is_default = true,
+					short_name = "et",
 				},
 				prompts = {
 					{
-						name = "Run Tests",
-						role = "user",
-						content = function(context)
-							return string.format(
-								[[Please run the test suite for the file: %s using the cmd_runner tool. Share the test output in your response.]],
-								context.filepath or "<test_file>"
-							)
-						end,
-						opts = { auto_submit = false },
+						{
+							name = "Setup Test",
+							role = constants.USER_ROLE,
+							opts = { auto_submit = false },
+							content = function()
+								-- Enable YOLO mode!
+								vim.g.codecompanion_yolo_mode = true
+
+								return [[### Instructions
+
+Your instructions here
+
+Fix the failing tests, note also that pytz needs to be replaced in this django project.
+
+### Steps to Follow
+
+You are required to write code following the instructions provided above and test the correctness by running the designated test suite. Follow these steps exactly:
+
+1. Use the @{cmd_runner} tool to run the test suite with `<test_cmd>`
+2. Update the code in the failing test using the tools in the @{full_stack_dev} group
+3. Make updates to that and other files as you see fit in order for the tests to pass.
+
+We'll repeat this cycle until all tests pass. Ensure no deviations from these steps.]]
+							end,
+						},
 					},
 					{
-						name = "Analyze Failures and Propose Fix",
-						role = "user",
-						content = [[If any tests failed, analyze the output and propose code changes to fix the failures. Use the insert_edit_into_file tool to implement your fix. Then, use the cmd_runner tool to re-run the tests. Repeat this process until all tests pass. If all tests pass, summarize the changes made.]],
-						opts = { auto_submit = false },
-					},
-					{
-						name = "Repeat Until Pass",
-						role = "user",
-						opts = {
-							auto_submit = true,
+						{
+							name = "Repeat On Failure",
+							role = constants.USER_ROLE,
+							opts = { auto_submit = true },
+							-- Scope this prompt to the cmd_runner tool
 							condition = function()
 								return _G.codecompanion_current_tool == "cmd_runner"
 							end,
+							-- Repeat until the tests pass, as indicated by the testing flag
+							-- which the cmd_runner tool sets on the chat buffer
 							repeat_until = function(chat)
-								return chat.tools.flags.testing == true
+								return chat.tool_registry.flags.testing == true
 							end,
+							content = "The tests have failed. Can you edit the buffer and run the test suite again?",
 						},
-						content = "Tests are still failing. Please analyze the output, propose and implement fixes using the insert_edit_into_file tool, and re-run the tests with the cmd_runner tool. Repeat until all tests pass.",
 					},
 				},
 			},
