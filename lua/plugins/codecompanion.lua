@@ -5,6 +5,7 @@ return {
 		opts = {
 			log_level = "DEBUG",
 		},
+
 		strategies = {
 			chat = {
 				roles = {
@@ -29,6 +30,7 @@ return {
 						},
 					},
 				},
+
 				slash_commands = {
 					["buffer"] = {
 						keymaps = {
@@ -64,6 +66,51 @@ return {
 								i = "<C-i>",
 							},
 						},
+					},
+				},
+			},
+		},
+		prompt_library = {
+			["Test and Fix"] = {
+				strategy = "workflow",
+				description = "Run tests in a file, analyze failures, and propose/implement fixes until tests pass.",
+				opts = {
+					adapter = {
+						name = "deepseek-coder",
+					},
+					short_name = "tf",
+				},
+				prompts = {
+					{
+						name = "Run Tests",
+						role = "user",
+						content = function(context)
+							return string.format(
+								[[Please run the test suite for the file: %s using the cmd_runner tool. Share the test output in your response.]],
+								context.filepath or "<test_file>"
+							)
+						end,
+						opts = { auto_submit = false },
+					},
+					{
+						name = "Analyze Failures and Propose Fix",
+						role = "user",
+						content = [[If any tests failed, analyze the output and propose code changes to fix the failures. Use the insert_edit_into_file tool to implement your fix. Then, use the cmd_runner tool to re-run the tests. Repeat this process until all tests pass. If all tests pass, summarize the changes made.]],
+						opts = { auto_submit = false },
+					},
+					{
+						name = "Repeat Until Pass",
+						role = "user",
+						opts = {
+							auto_submit = true,
+							condition = function()
+								return _G.codecompanion_current_tool == "cmd_runner"
+							end,
+							repeat_until = function(chat)
+								return chat.tools.flags.testing == true
+							end,
+						},
+						content = "Tests are still failing. Please analyze the output, propose and implement fixes using the insert_edit_into_file tool, and re-run the tests with the cmd_runner tool. Repeat until all tests pass.",
 					},
 				},
 			},
@@ -169,6 +216,14 @@ return {
 			"<cmd>CodeCompanionChat Toggle<CR>",
 			mode = { "n" },
 			desc = "Toggle CodeCompanion Chat",
+			noremap = true,
+			silent = true,
+		},
+		{
+			"<leader>ca",
+			"<cmd>CodeCompanionActions<CR>",
+			mode = { "n" },
+			desc = "Open CodeCompanionActions",
 			noremap = true,
 			silent = true,
 		},
