@@ -57,29 +57,20 @@ return {
 			require("neotest").run.attach()
 		end, { desc = "Neotest Attach" })
 
-		-- Toggle output panel
 		vim.keymap.set("n", "<leader>tp", function()
-			require("neotest").output_panel.toggle()
+			require("neotest").output_panel.toggle({
+				-- open = "botright vsplit | vertical resize 80",
+			})
 		end, { desc = "Neotest Output Panel" })
+		-- vim.keymap.set("n", "<leader>tr", function()
+		-- 	require("neotest").output_panel.open({
+		-- 		open = "botright vsplit | vertical resize 80",
+		-- 	})
+		-- end, { desc = "Neotest Output Panel (Right)" })
 		vim.keymap.set("n", "<leader>ts", function()
 			require("neotest").summary.toggle()
 		end, { desc = "Neotest Summary Toggle" })
 		-- Open output for nearest test (vertical split, with buffer check)
-		vim.keymap.set("n", "<leader>to", function()
-			require("neotest").output.open({
-				enter = true,
-				short = false,
-				open_win = function(bufnr)
-					vim.cmd("vsplit")
-					local win = vim.api.nvim_get_current_win()
-					if type(bufnr) == "number" and vim.api.nvim_buf_is_valid(bufnr) then
-						vim.api.nvim_win_set_buf(win, bufnr)
-					else
-						vim.notify("Invalid buffer for neotest output", vim.log.levels.ERROR)
-					end
-				end,
-			})
-		end, { desc = "Neotest Output (vsplit)" })
 	end,
 }
 

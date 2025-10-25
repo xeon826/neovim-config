@@ -5,7 +5,6 @@ return {
 		opts = {
 			log_level = "DEBUG",
 		},
-
 		strategies = {
 			chat = {
 				roles = {
