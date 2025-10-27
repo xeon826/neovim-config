@@ -8,28 +8,28 @@ return {
 			{ "<C-A-H>", "<cmd>BufferLineMovePrev<CR>", noremap = true, silent = true, desc = "Move buffer left" },
 			{ "<S-h>", "<cmd>BufferLineCyclePrev<CR>", noremap = true, silent = true, desc = "Previous buffer" },
 			{ "<S-l>", "<cmd>BufferLineCycleNext<CR>", noremap = true, silent = true, desc = "Next buffer" },
-			{
-				"<leader>bd",
-				function()
-					-- Get current buffer number
-					local current_buf = vim.api.nvim_get_current_buf()
+			-- {
+			-- 	"<leader>bd",
+			-- 	function()
+			-- 		-- Get current buffer number
+			-- 		local current_buf = vim.api.nvim_get_current_buf()
 
-					-- Check if nvim-tree is loaded and visible
-					local nvim_tree_loaded = package.loaded["nvim-tree"]
-					if nvim_tree_loaded then
-						local api = require("nvim-tree.api")
-						if api.tree.is_visible() then
-							api.tree.close()
-						end
-					end
+			-- 		-- Check if nvim-tree is loaded and visible
+			-- 		local nvim_tree_loaded = package.loaded["nvim-tree"]
+			-- 		if nvim_tree_loaded then
+			-- 			local api = require("nvim-tree.api")
+			-- 			if api.tree.is_visible() then
+			-- 				api.tree.close()
+			-- 			end
+			-- 		end
 
-					-- Close the current buffer using bdelete
-					vim.cmd("bdelete " .. current_buf)
-				end,
-				noremap = true,
-				silent = true,
-				desc = "Delete current buffer"
-			},
+			-- 		-- Close the current buffer using bdelete
+			-- 		vim.cmd("bdelete " .. current_buf)
+			-- 	end,
+			-- 	noremap = true,
+			-- 	silent = true,
+			-- 	desc = "Delete current buffer"
+			-- },
 			{
 				"<leader>btp",
 				"<cmd>BufferLineTogglePin<CR>",

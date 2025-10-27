@@ -199,7 +199,7 @@ We'll repeat this cycle until all tests pass. Ensure no deviations from these st
 						delete = { n = "d", i = "<M-d>" },
 						duplicate = { n = "<C-y>", i = "<C-y>" },
 					},
-					auto_generate_title = true,
+					auto_generate_title = false,
 					title_generation_opts = {
 						adapter = nil,
 						model = nil,
