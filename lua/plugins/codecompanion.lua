@@ -1,7 +1,7 @@
 local constants = {
-  LLM_ROLE = "llm",
-  USER_ROLE = "user",
-  SYSTEM_ROLE = "system",
+	LLM_ROLE = "llm",
+	USER_ROLE = "user",
+	SYSTEM_ROLE = "system",
 }
 return {
 	"olimorris/codecompanion.nvim",
@@ -10,12 +10,19 @@ return {
 		opts = {
 			log_level = "DEBUG",
 		},
-
+		adapters = {
+			acp = {
+				claude_code = function()
+					return require("codecompanion.adapters").extend("claude_code", {})
+				end,
+			},
+		},
 		strategies = {
 			chat = {
 				roles = {
 					user = "dan the man",
 				},
+        adapter="claude_code",
 				keymaps = {
 					send = {
 						modes = {
@@ -57,6 +64,11 @@ return {
 					["file"] = {
 						opts = {
 							provider = "snacks",
+						},
+						keymaps = {
+							modes = {
+								n = "<leader>f",
+							},
 						},
 					},
 					["help"] = {

@@ -13,6 +13,7 @@ return {
 	{
 		-- Autopairs
 		"windwp/nvim-autopairs",
+    enabled=false,
 		opts = {
 			check_ts = true,
 			ts_config = {
