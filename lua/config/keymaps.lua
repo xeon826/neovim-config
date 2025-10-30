@@ -10,23 +10,10 @@
 -- Description: Key mapping configs
 -- Author: Joshua WIlkeson
 -- Smart buffer/window switching (works in terminal mode too)
-vim.keymap.set({ "n", "t" }, "<C-h>", function()
-  if vim.bo.buftype == "terminal" then
-    vim.cmd("wincmd h")
-  else
-    vim.cmd("bprevious")
-  end
-end, { desc = "Previous buffer or left window" })
-
-vim.keymap.set({ "n", "t" }, "<C-l>", function()
-  if vim.bo.buftype == "terminal" then
-    vim.cmd("wincmd l")
-  else
-    vim.cmd("bnext")
-  end
-end, { desc = "Next buffer or right window" })
-vim.keymap.set({ "i", "n", "t" }, "<C-j>", "<C-w>j")
-vim.keymap.set({ "i", "n", "t" }, "<C-k>", "<C-w>k")
+vim.keymap.set({ "n", "t" }, "<C-h>", function() vim.cmd("wincmd h") end, { desc = "Previous buffer or left window" })
+vim.keymap.set({ "n", "t" }, "<C-l>", function() vim.cmd("wincmd l") end, { desc = "Next buffer or right window" })
+vim.keymap.set({ "n", "t" }, "<C-j>", function() vim.cmd("wincmd j") end, { desc = "Previous buffer or bottom window" })
+vim.keymap.set({ "n", "t" }, "<C-k>", function() vim.cmd("wincmd k") end, { desc = "Next buffer or upper window" })
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window bigger vertically
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
 vim.keymap.set("n", "<C-=>", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally
