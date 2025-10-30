@@ -1,10 +1,31 @@
-local toggle_key = "<C-,>"
+local toggle_key = "<C-\\>"
+-- Note: Changed from <C-,> to <C-\\> because <C-,> is not a valid terminal key
 return {
+	-- Claude FZF plugin configuration
+	{
+		"pittcat/claude-fzf.nvim",
+		dependencies = {
+			"ibhagwan/fzf-lua",
+			"coder/claudecode.nvim"
+		},
+		opts = {
+			auto_context = true,
+			batch_size = 10,
+		},
+		cmd = { "ClaudeFzf", "ClaudeFzfFiles", "ClaudeFzfGrep", "ClaudeFzfBuffers", "ClaudeFzfGitFiles", "ClaudeFzfDirectory" },
+		-- keys = {
+		-- 	{ "<leader>cf", "<cmd>ClaudeFzfFiles<cr>", desc = "Claude: Add files" },
+		-- 	{ "<leader>cg", "<cmd>ClaudeFzfGrep<cr>", desc = "Claude: Search and add" },
+		-- 	{ "<leader>cb", "<cmd>ClaudeFzfBuffers<cr>", desc = "Claude: Add buffers" },
+		-- 	{ "<leader>cgf", "<cmd>ClaudeFzfGitFiles<cr>", desc = "Claude: Add Git files" },
+		-- 	{ "<leader>cd", "<cmd>ClaudeFzfDirectory<cr>", desc = "Claude: Add directory files" },
+		-- },
+	},
 	{
 		"coder/claudecode.nvim",
 		dependencies = { "folke/snacks.nvim" },
 		keys = {
-			{ toggle_key, "<cmd>ClaudeCodeFocus<cr>", desc = "Claude Code", mode = { "n", "x" } },
+			{ toggle_key, "<cmd>ClaudeCodeFocus<cr>", desc = "Claude Code", mode = { "n", "x", "t" } },
 			{ "<leader>a", nil, desc = "AI/Claude Code" },
 			{ "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
 			{ "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
@@ -32,21 +53,71 @@ return {
 					position = "right",
 					width = 0.4,
 					keys = {
-						claude_hide = {
-							toggle_key,
+						nav_left = {
+							"<C-h>",
 							function(self)
-								self:hide()
+								vim.cmd("wincmd h")
 							end,
 							mode = "t",
-							desc = "Hide",
+							desc = "Nav to previous buffer",
 						},
-						focus_nvim = {
-							"<C-n>",
+						nav_right = {
+							"<C-l>",
 							function(self)
-								vim.api.nvim_set_current_win(vim.api.nvim_get_current_win())
+								vim.cmd("wincmd l")
 							end,
 							mode = "t",
-							desc = "Focus Neovim",
+							desc = "Nav to previous buffer",
+						},
+						nav_down = {
+							"<C-j>",
+							function(self)
+								vim.cmd("wincmd j")
+							end,
+							mode = "t",
+							desc = "Nav to bottom buffer",
+						},
+						nav_up = {
+							"<C-k>",
+							function(self)
+								vim.cmd("wincmd k")
+							end,
+							mode = "t",
+							desc = "Nav to top buffer",
+						},
+						-- Claude FZF key mappings
+						claude_fzf_files = {
+							"<C-f>",
+							function()
+								-- vim.cmd("ClaudeFzfFiles")
+								vim.cmd("ClaudeFzfGitFiles")
+							end,
+							mode = "t",
+							desc = "Claude: Add files",
+						},
+						claude_fzf_grep = {
+							"<C-g>",
+							function()
+								vim.cmd("ClaudeFzfGrep")
+							end,
+							mode = "t",
+							desc = "Claude: Search and add",
+						},
+						claude_fzf_buffers = {
+							"<C-b>",
+							function()
+								vim.cmd("ClaudeFzfBuffers")
+							end,
+							mode = "t",
+							desc = "Claude: Add buffers",
+						},
+						claude_fzf_directory = {
+							"<C-d>",
+							function()
+								vim.cmd("ClaudeFzfDirectory")
+							end,
+							mode = "t",
+							desc = "Claude: Add directory files",
 						},
 					},
 				},
