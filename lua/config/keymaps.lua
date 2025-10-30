@@ -14,10 +14,10 @@ vim.keymap.set({ "n", "t" }, "<C-h>", function() vim.cmd("wincmd h") end, { desc
 vim.keymap.set({ "n", "t" }, "<C-l>", function() vim.cmd("wincmd l") end, { desc = "Next buffer or right window" })
 vim.keymap.set({ "n", "t" }, "<C-j>", function() vim.cmd("wincmd j") end, { desc = "Previous buffer or bottom window" })
 vim.keymap.set({ "n", "t" }, "<C-k>", function() vim.cmd("wincmd k") end, { desc = "Next buffer or upper window" })
-vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window bigger vertically
-vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
-vim.keymap.set("n", "<C-=>", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally
-vim.keymap.set("n", "<C-->", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally
+vim.keymap.set({ "n", "t" }, "=", [[<cmd>vertical resize +5<cr>]]) -- make the window bigger vertically
+vim.keymap.set({ "n", "t" }, "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
+vim.keymap.set({ "n", "t" }, "<C-=>", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally
+vim.keymap.set({ "n", "t" }, "<C-->", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally
 vim.keymap.set({ "i", "n" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
