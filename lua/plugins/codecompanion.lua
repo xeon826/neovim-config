@@ -6,6 +6,7 @@ local constants = {
 return {
 	"olimorris/codecompanion.nvim",
 	event = "VeryLazy",
+  enabled=false,
 	opts = {
 		opts = {
 			log_level = "DEBUG",

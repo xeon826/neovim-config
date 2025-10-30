@@ -38,7 +38,7 @@ return {
 		end, { desc = "Neotest Run File" })
 
 		-- Debug nearest test
-		vim.keymap.set("n", "<leader>td", function()
+		vim.keymap.set("n", "<leader>tn", function()
 			require("neotest").run.run({ strategy = "dap" })
 		end, { desc = "Neotest Debug Nearest" })
 
