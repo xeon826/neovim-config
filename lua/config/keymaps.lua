@@ -14,10 +14,20 @@ vim.keymap.set({ "n" }, "<C-h>", "<C-w>h")
 vim.keymap.set({ "n" }, "<C-l>", "<C-w>l")
 vim.keymap.set({ "n" }, "<C-j>", "<C-w>j")
 vim.keymap.set({ "n" }, "<C-k>", "<C-w>k")
-vim.keymap.set({ "n", "t" }, "=", [[<cmd>vertical resize +5<cr>]]) -- make the window bigger vertically
-vim.keymap.set({ "n", "t" }, "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
-vim.keymap.set({ "n", "t" }, "<C-=>", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally
-vim.keymap.set({ "n", "t" }, "<C-->", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally
+
+-- Window resizing - normal mode compatible versions
+vim.keymap.set({ "n" }, "=", [[<cmd>vertical resize +5<cr>]]) -- make the window bigger vertically
+vim.keymap.set({ "n" }, "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
+vim.keymap.set({ "n" }, "<C-=>", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally
+vim.keymap.set({ "n" }, "<C-->", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally
+
+
+-- Window resizing - terminal mode compatible versions
+vim.keymap.set({ "t" }, "<A-=>", [[<cmd>vertical resize +5<cr>]], { desc = "Increase window width (terminal)" })
+vim.keymap.set({ "t" }, "<A-->", [[<cmd>vertical resize -5<cr>]], { desc = "Decrease window width (terminal)" })
+vim.keymap.set({ "t" }, "<A-+>", [[<cmd>horizontal resize +2<cr>]], { desc = "Increase window height (terminal)" })
+vim.keymap.set({ "t" }, "<A-_>", [[<cmd>horizontal resize -2<cr>]], { desc = "Decrease window height (terminal)" })
+
 vim.keymap.set({ "i", "n" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })

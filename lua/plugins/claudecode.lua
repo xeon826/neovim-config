@@ -13,13 +13,6 @@ return {
 			batch_size = 10,
 		},
 		cmd = { "ClaudeFzf", "ClaudeFzfFiles", "ClaudeFzfGrep", "ClaudeFzfBuffers", "ClaudeFzfGitFiles", "ClaudeFzfDirectory" },
-		-- keys = {
-		-- 	{ "<leader>cf", "<cmd>ClaudeFzfFiles<cr>", desc = "Claude: Add files" },
-		-- 	{ "<leader>cg", "<cmd>ClaudeFzfGrep<cr>", desc = "Claude: Search and add" },
-		-- 	{ "<leader>cb", "<cmd>ClaudeFzfBuffers<cr>", desc = "Claude: Add buffers" },
-		-- 	{ "<leader>cgf", "<cmd>ClaudeFzfGitFiles<cr>", desc = "Claude: Add Git files" },
-		-- 	{ "<leader>cd", "<cmd>ClaudeFzfDirectory<cr>", desc = "Claude: Add directory files" },
-		-- },
 	},
 	{
 		"coder/claudecode.nvim",
@@ -89,7 +82,7 @@ return {
 						claude_fzf_files = {
 							"<C-f>",
 							function()
-								-- vim.cmd("ClaudeFzfFiles")
+								vim.cmd("stopinsert")
 								vim.cmd("ClaudeFzfGitFiles")
 							end,
 							mode = "t",
@@ -98,6 +91,7 @@ return {
 						claude_fzf_grep = {
 							"<C-g>",
 							function()
+								vim.cmd("stopinsert")
 								vim.cmd("ClaudeFzfGrep")
 							end,
 							mode = "t",
@@ -106,6 +100,7 @@ return {
 						claude_fzf_buffers = {
 							"<C-b>",
 							function()
+								vim.cmd("stopinsert")
 								vim.cmd("ClaudeFzfBuffers")
 							end,
 							mode = "t",
@@ -114,6 +109,7 @@ return {
 						claude_fzf_directory = {
 							"<C-d>",
 							function()
+								vim.cmd("stopinsert")
 								vim.cmd("ClaudeFzfDirectory")
 							end,
 							mode = "t",
