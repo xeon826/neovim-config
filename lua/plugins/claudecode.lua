@@ -3,7 +3,8 @@ local toggle_key = "<C-\\>"
 return {
 	-- Claude FZF plugin configuration
 	{
-		"pittcat/claude-fzf.nvim",
+		"xeon826/claude-fzf.nvim",
+		dir = "/home/dan/git_clones/claude-fzf.nvim",
 		dependencies = {
 			"ibhagwan/fzf-lua",
 			"coder/claudecode.nvim"
