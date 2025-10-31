@@ -8,13 +8,20 @@ return {
 		dir = "/home/dan/git_clones/claude-fzf.nvim",
 		dependencies = {
 			"ibhagwan/fzf-lua",
-			"coder/claudecode.nvim"
+			"coder/claudecode.nvim",
 		},
 		opts = {
 			auto_context = true,
 			batch_size = 10,
 		},
-		cmd = { "ClaudeFzf", "ClaudeFzfFiles", "ClaudeFzfGrep", "ClaudeFzfBuffers", "ClaudeFzfGitFiles", "ClaudeFzfDirectory" },
+		cmd = {
+			"ClaudeFzf",
+			"ClaudeFzfFiles",
+			"ClaudeFzfGrep",
+			"ClaudeFzfBuffers",
+			"ClaudeFzfGitFiles",
+			"ClaudeFzfDirectory",
+		},
 	},
 	{
 		"coder/claudecode.nvim",
@@ -42,14 +49,16 @@ return {
 			{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 		},
 		opts = {
+			diff_opts = {
+				keep_terminal_focus = false,
+			},
 			terminal = {
 				provider = "snacks",
 				---@module "snacks"
 				---@type snacks.win.Config|{}
 				snacks_win_opts = {
-					position = "float",
-					width = 0.8,
-					width = 0.8,
+					position = "bottom",
+					height = 0.5,
 					keys = {
 						nav_left = {
 							"<C-h>",

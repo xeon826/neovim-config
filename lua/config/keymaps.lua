@@ -24,8 +24,8 @@ vim.keymap.set({ "n" }, "<C-->", [[<cmd>horizontal resize -2<cr>]]) -- make the 
 -- Window resizing - terminal mode compatible versions
 vim.keymap.set({ "t" }, "<A-=>", [[<cmd>vertical resize +5<cr>]], { desc = "Increase window width (terminal)" })
 vim.keymap.set({ "t" }, "<A-->", [[<cmd>vertical resize -5<cr>]], { desc = "Decrease window width (terminal)" })
-vim.keymap.set({ "t" }, "<A-+>", [[<cmd>horizontal resize +2<cr>]], { desc = "Increase window height (terminal)" })
-vim.keymap.set({ "t" }, "<A-_>", [[<cmd>horizontal resize -2<cr>]], { desc = "Decrease window height (terminal)" })
+vim.keymap.set({ "t" }, "<C-A-=>", [[<cmd>horizontal resize +2<cr>]], { desc = "Increase window height (terminal)" })
+vim.keymap.set({ "t" }, "<C-A-->", [[<cmd>horizontal resize -2<cr>]], { desc = "Decrease window height (terminal)" })
 
 vim.keymap.set({ "i", "n" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
