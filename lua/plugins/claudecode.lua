@@ -1,5 +1,6 @@
 local toggle_key = "<C-\\>"
 -- Note: Changed from <C-,> to <C-\\> because <C-,> is not a valid terminal key
+
 return {
 	-- Claude FZF plugin configuration
 	{
@@ -34,6 +35,8 @@ return {
 				desc = "Add file",
 				ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
 			},
+			-- Layout-specific keymaps
+			{ "<leader>av", "<cmd>ClaudeCode<cr>", desc = "Claude: Vertical split" },
 			-- Diff management
 			{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
 			{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
@@ -44,8 +47,9 @@ return {
 				---@module "snacks"
 				---@type snacks.win.Config|{}
 				snacks_win_opts = {
-					position = "right",
-					width = 0.4,
+					position = "float",
+					width = 0.8,
+					width = 0.8,
 					keys = {
 						nav_left = {
 							"<C-h>",

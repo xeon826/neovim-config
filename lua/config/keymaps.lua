@@ -21,7 +21,6 @@ vim.keymap.set({ "n" }, "-", [[<cmd>vertical resize -5<cr>]]) -- make the window
 vim.keymap.set({ "n" }, "<C-=>", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally
 vim.keymap.set({ "n" }, "<C-->", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally
 
-
 -- Window resizing - terminal mode compatible versions
 vim.keymap.set({ "t" }, "<A-=>", [[<cmd>vertical resize +5<cr>]], { desc = "Increase window width (terminal)" })
 vim.keymap.set({ "t" }, "<A-->", [[<cmd>vertical resize -5<cr>]], { desc = "Decrease window width (terminal)" })
@@ -44,5 +43,10 @@ vim.keymap.set("n", "<C-[>", function()
 	vim.cmd("nohlsearch")
 end, { desc = "Remove highlights" })
 
-vim.keymap.set("n", "<C-q>", "<cmd>qa!<cr>", { desc = "Close neovim" })
-vim.keymap.set("n", "<leader>mi", ":MCPHub<CR>", { noremap = true, silent = true, desc = "Run MCPHub insert_edit_into_file" })
+vim.keymap.set({ "n", "t" }, "<C-q>", "<cmd>qa!<cr>", { desc = "Close neovim" })
+vim.keymap.set(
+	"n",
+	"<leader>mi",
+	":MCPHub<CR>",
+	{ noremap = true, silent = true, desc = "Run MCPHub insert_edit_into_file" }
+)
