@@ -15,6 +15,7 @@ vim.keymap.set({ "n" }, "<C-l>", "<C-w>l")
 vim.keymap.set({ "n" }, "<C-j>", "<C-w>j")
 vim.keymap.set({ "n" }, "<C-k>", "<C-w>k")
 
+
 -- Window resizing - normal mode compatible versions
 vim.keymap.set({ "n" }, "=", [[<cmd>vertical resize +5<cr>]]) -- make the window bigger vertically
 vim.keymap.set({ "n" }, "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically

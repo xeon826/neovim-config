@@ -45,12 +45,14 @@ return {
 			-- Layout-specific keymaps
 			{ "<leader>av", "<cmd>ClaudeCode<cr>", desc = "Claude: Vertical split" },
 			-- Diff management
-			{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-			{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+			-- { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+			-- { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+			{ "<C-1>", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+			{ "<C-2>", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 		},
 		opts = {
 			diff_opts = {
-				keep_terminal_focus = false,
+				keep_terminal_focus = true,
 			},
 			terminal = {
 				provider = "snacks",
@@ -102,15 +104,15 @@ return {
 							mode = "t",
 							desc = "Claude: Add files",
 						},
-						claude_fzf_grep = {
-							"<C-g>",
-							function()
-								vim.cmd("stopinsert")
-								vim.cmd("ClaudeFzfGrep")
-							end,
-							mode = "t",
-							desc = "Claude: Search and add",
-						},
+						-- claude_fzf_grep = {
+						-- 	"<leader>/",
+						-- 	function()
+						-- 		vim.cmd("stopinsert")
+						-- 		vim.cmd("ClaudeFzfGrep")
+						-- 	end,
+						-- 	mode = "t",
+						-- 	desc = "Claude: Search and add",
+						-- },
 						claude_fzf_buffers = {
 							"<C-b>",
 							function()
