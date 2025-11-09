@@ -25,8 +25,10 @@ vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, rep
 vim.g.mapleader = " "
 vim.g.jukit_mappings_ext_enabled = {"py", "ipynb"}
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
-vim.api.nvim_set_hl(0, "CurSearch", { fg = "#ffffff", bg = "#2D4F67", bold = true })
+-- Custom highlights are now defined in config/highlights.lua
 
 -- build spec
 local spec = {{
@@ -86,7 +88,7 @@ require("lazy").setup({
     state = vim.fn.stdpath("state") .. "/lazy/state.json" -- state info for checker and other things
 })
 
-local modules = {"config.autocmds", "config.options", "config.keymaps", "config.custom"}
+local modules = {"config.autocmds", "config.options", "config.keymaps", "config.highlights", "config.custom"}
 
 for _, mod in ipairs(modules) do
     local ok, err = pcall(require, mod)

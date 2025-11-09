@@ -73,6 +73,18 @@ return {
 							end,
 							key = "s",
 						},
+						{
+							desc = "Claude Code",
+							group = "Label",
+							action = function()
+								-- Use pcall to safely call ClaudeCode command
+								local ok, _ = pcall(vim.cmd, "ClaudeCode")
+								if not ok then
+									vim.notify("ClaudeCode not available yet. Try again after plugins load.", vim.log.levels.WARN)
+								end
+							end,
+							key = "c",
+						},
 					},
 				},
 			})

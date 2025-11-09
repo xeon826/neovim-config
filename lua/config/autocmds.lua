@@ -87,3 +87,23 @@ autocmd("LspAttach", {
 		vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
 	end,
 })
+
+-- Open nvim-tree with the correct directory when starting Neovim
+augroup("nvim_tree_startup", { clear = true })
+autocmd("VimEnter", {
+	group = "nvim_tree_startup",
+	callback = function(data)
+		-- buffer is a directory
+		local directory = vim.fn.isdirectory(data.file) == 1
+
+		if not directory then
+			return
+		end
+
+		-- change to the directory
+		vim.cmd.cd(data.file)
+
+		-- open the tree
+		-- require("nvim-tree.api").tree.open()
+	end,
+})

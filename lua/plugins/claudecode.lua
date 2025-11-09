@@ -25,6 +25,7 @@ return {
 	},
 	{
 		"coder/claudecode.nvim",
+		event = "VeryLazy",
 		dependencies = { "folke/snacks.nvim" },
 		keys = {
 			{ toggle_key, "<cmd>ClaudeCodeFocus<cr>", desc = "Claude Code", mode = { "n", "x", "t" } },
@@ -51,7 +52,9 @@ return {
 			{ "<C-2>", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 		},
 		opts = {
+      terminal_cmd = "/usr/bin/claude",
 			diff_opts = {
+        open_in_current_tab = false,
 				keep_terminal_focus = true,
 			},
 			terminal = {
@@ -59,8 +62,9 @@ return {
 				---@module "snacks"
 				---@type snacks.win.Config|{}
 				snacks_win_opts = {
-					position = "bottom",
-					height = 0.5,
+					position = "float",
+					height = 0.9,
+					width = 0.9999999,
 					keys = {
 						nav_left = {
 							"<C-h>",
