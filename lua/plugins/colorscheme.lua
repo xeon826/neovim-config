@@ -19,7 +19,8 @@ return {
 		},
 	},
 	{
-		"nyoom-engineering/oxocarbon.nvim",
+		"https://github.com/xeon826/oxocarbon.nvim",
+		dir = "/home/dan/git_clones/oxocarbon.nvim",
 		name = "oxocarbon",
 		lazy = false,
 		event = "VimEnter", -- Ensures it starts after Neovim finishes loading

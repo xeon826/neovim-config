@@ -80,6 +80,92 @@ return {
 					separator_styling = "padded_slope",
           indicator = { style = 'underline' }
 				},
+				highlights = {
+					-- Background for inactive buffers
+					background = {
+						fg = "#d0d0d0",  -- base04 (light text) - light foreground for inactive
+						bg = "#161616",  -- base00 (dark background)
+					},
+					-- Selected buffer - using aquamarine (base08) for active tabs
+					buffer_selected = {
+						fg = "#161616",  -- base00 (dark foreground) - dark text for active
+						bg = "#3ddbd9",  -- base08 (aquamarine/light cyan)
+						bold = true,
+					},
+					-- Visible but not selected buffers
+					buffer_visible = {
+						fg = "#d0d0d0",  -- base04 (light text) - light foreground for inactive
+						bg = "#262626",  -- base01 (darker gray)
+					},
+					-- Fill (background of the entire bufferline)
+					fill = {
+						bg = "#131313",  -- blend (slightly darker than base00)
+					},
+					-- Separators between buffers
+					separator = {
+						fg = "#393939",  -- base02 (medium gray)
+						bg = "#131313",  -- blend
+					},
+					separator_selected = {
+						fg = "#525252",  -- base03 (light gray)
+						bg = "#131313",  -- blend
+					},
+					-- Close button
+					close_button = {
+						fg = "#525252",  -- base03 (light gray)
+						bg = "#161616",  -- base00
+					},
+					close_button_selected = {
+						fg = "#161616",  -- base00 (dark foreground)
+						bg = "#3ddbd9",  -- base08 (aquamarine)
+					},
+					-- Modified buffers (unsaved changes)
+					modified = {
+						fg = "#78a9ff",  -- base09 (light blue)
+						bg = "#161616",  -- base00
+					},
+					modified_selected = {
+						fg = "#161616",  -- base00 (dark foreground)
+						bg = "#3ddbd9",  -- base08 (aquamarine)
+					},
+					-- Diagnostic indicators
+					diagnostic = {
+						fg = "#ee5396",  -- base10 (pink/magenta) for errors
+						bg = "#161616",  -- base00
+					},
+					diagnostic_selected = {
+						fg = "#161616",  -- base00 (dark foreground)
+						bg = "#3ddbd9",  -- base08 (aquamarine)
+						bold = true,
+					},
+					-- Info diagnostic
+					info_diagnostic = {
+						fg = "#33b1ff",  -- base11 (bright blue)
+						bg = "#161616",  -- base00
+					},
+					info_diagnostic_selected = {
+						fg = "#161616",  -- base00 (dark foreground)
+						bg = "#3ddbd9",  -- base08 (aquamarine)
+					},
+					-- Warning diagnostic
+					warning_diagnostic = {
+						fg = "#ff7eb6",  -- base12 (light pink)
+						bg = "#161616",  -- base00
+					},
+					warning_diagnostic_selected = {
+						fg = "#161616",  -- base00 (dark foreground)
+						bg = "#3ddbd9",  -- base08 (aquamarine)
+					},
+					-- Hint diagnostic
+					hint_diagnostic = {
+						fg = "#42be65",  -- base13 (green)
+						bg = "#161616",  -- base00
+					},
+					hint_diagnostic_selected = {
+						fg = "#161616",  -- base00 (dark foreground)
+						bg = "#3ddbd9",  -- base08 (aquamarine)
+					},
+				},
 
 			})
 		end,
