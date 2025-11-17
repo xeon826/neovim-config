@@ -1,7 +1,7 @@
 return {
 	{
 		"folke/snacks.nvim",
-    enabled=true,
+		enabled = true,
 		priority = 1000,
 		lazy = false,
 		---@type snacks.Config
@@ -33,6 +33,12 @@ return {
 			},
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
+			terminal = {
+				keys = {
+					-- Use Ctrl+i instead of Esc for entering normal mode to avoid conflict with Claude Code
+			
+				},
+			},
 			styles = {
 				notification = {
 					-- wo = { wrap = true } -- Wrap notifications
@@ -47,13 +53,6 @@ return {
 				end,
 				desc = "Toggle Scratch Buffer",
 			},
-			-- {
-			-- 	"<leader>S",
-			-- 	function()
-			-- 		Snacks.scratch.select()
-			-- 	end,
-			-- 	desc = "Select Scratch Buffer",
-			-- },
 			{
 				"<leader>n",
 				function()

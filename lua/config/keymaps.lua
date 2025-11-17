@@ -27,7 +27,6 @@ vim.keymap.set({ "t" }, "<A-=>", [[<cmd>vertical resize +5<cr>]], { desc = "Incr
 vim.keymap.set({ "t" }, "<A-->", [[<cmd>vertical resize -5<cr>]], { desc = "Decrease window width (terminal)" })
 vim.keymap.set({ "t" }, "<C-A-=>", [[<cmd>horizontal resize +2<cr>]], { desc = "Increase window height (terminal)" })
 vim.keymap.set({ "t" }, "<C-A-->", [[<cmd>horizontal resize -2<cr>]], { desc = "Decrease window height (terminal)" })
-
 vim.keymap.set({ "i", "n" }, "<C-s>", ":silent w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>ya", ":silent %y+<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bca", "<cmd>%bdelete<CR>", { noremap = true, silent = true, desc = "Close all buffers" })
@@ -51,3 +50,8 @@ vim.keymap.set(
 	":MCPHub<CR>",
 	{ noremap = true, silent = true, desc = "Run MCPHub insert_edit_into_file" }
 )
+
+-- Enter normal mode from insert and terminal modes
+vim.keymap.set({ "t" }, "<C-n>", function()
+	vim.cmd("stopinsert")
+end, { desc = "Enter normal mode" })
