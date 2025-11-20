@@ -99,11 +99,20 @@ return {
 							desc = "Nav to top buffer",
 						},
 						-- Claude FZF key mappings
+						claude_fzf_git_files = {
+							"<C-,>",
+							function()
+								vim.cmd("stopinsert")
+								vim.cmd("ClaudeFzfGitFiles")
+							end,
+							mode = "t",
+							desc = "Claude: Add Git files",
+						},
 						claude_fzf_files = {
 							"<C-f>",
 							function()
 								vim.cmd("stopinsert")
-								vim.cmd("ClaudeFzfGitFiles")
+								vim.cmd("ClaudeFzfFiles")
 							end,
 							mode = "t",
 							desc = "Claude: Add files",
