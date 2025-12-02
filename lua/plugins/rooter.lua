@@ -1,6 +1,6 @@
 return {
 	"airblade/vim-rooter",
-  enabled=true,
+  enabled=false,
   opts = {
     rooter_silent_chdir = 1,
   },

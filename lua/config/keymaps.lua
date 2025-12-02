@@ -55,3 +55,10 @@ vim.keymap.set({ "n", "t" }, "<C-q>", "<cmd>qa!<cr>", { desc = "Close neovim" })
 vim.keymap.set({ "t" }, "<C-n>", function()
 	vim.cmd("stopinsert")
 end, { desc = "Enter normal mode" })
+
+-- Git conflict resolution keymaps
+-- vim.keymap.set("n", "<leader>gco", "<cmd>GitConflictChooseOurs<cr>", { desc = "Choose current changes in git conflict" })
+-- vim.keymap.set("n", "<leader>gci", "<cmd>GitConflictChooseTheirs<cr>", { desc = "Choose incoming changes in git conflict" })
+-- vim.keymap.set("n", "<leader>gcb", "<cmd>GitConflictChooseBoth<cr>", { desc = "Choose both changes in git conflict" })
+-- vim.keymap.set("n", "<leader>gcn", "<cmd>GitConflictChooseNone<cr>", { desc = "Choose none of the changes in git conflict" })
+-- vim.keymap.set("n", "<leader>gcl", "<cmd>GitConflictListQf<cr>", { desc = "List all git conflicts" })

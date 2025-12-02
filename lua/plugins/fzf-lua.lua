@@ -222,7 +222,7 @@ return {
 				function()
 					require("fzf-lua").commands()
 				end,
-				desc = "Command History",
+				desc = "Commands",
 				mode = "n",
 			},
 			-- Treesitter symbols

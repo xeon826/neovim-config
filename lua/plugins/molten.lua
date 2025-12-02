@@ -62,6 +62,17 @@ return {
 			-- Import/Export
 			{ "<leader>ie", "<cmd>MoltenExportOutput<CR>", desc = "Molten: Export output" },
 			{ "<leader>ii", "<cmd>MoltenImportNotebook<CR>", desc = "Molten: Import notebook" },
+			-- Run entire file or to cursor
+			{
+				"<leader>rf",
+				"ggVG:<C-u>MoltenEvaluateVisual<CR>",
+				desc = "Molten: Run entire file",
+			},
+			{
+				"<leader>ru",
+				"ggv:<C-u>MoltenEvaluateVisual<CR>",
+				desc = "Molten: Run from start to cursor",
+			},
 		},
 		ft = { "python", "julia", "r", "javascript", "typescript" },
 	},
