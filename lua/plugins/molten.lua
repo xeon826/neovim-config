@@ -36,7 +36,7 @@ return {
 			{ "<leader>mi", "<cmd>MoltenInit<CR>", desc = "Molten: Initialize kernel" },
 
 			-- Evaluation commands
-			{ "<leader>e", "<cmd>MoltenEvaluateOperator<CR>", desc = "Molten: Evaluate operator" },
+			{ "<leader>mo", "<cmd>MoltenEvaluateOperator<CR>", desc = "Molten: Evaluate operator" },
 			{
 				"<leader>r",
 				":<C-u>MoltenEvaluateVisual<CR>gv",
