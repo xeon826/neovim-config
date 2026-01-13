@@ -42,7 +42,7 @@ return {
 							key = "b",
 						},
 						{
-							desc = "Find Files (Telescope)",
+							desc = "Find Files (Fzf)",
 							group = "Label",
 							action = function()
 								require("fzf-lua").files()
