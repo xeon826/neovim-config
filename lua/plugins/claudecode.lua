@@ -3,26 +3,26 @@ local toggle_key = "<C-\\>"
 
 return {
 	-- Claude FZF plugin configuration
-	{
-		"xeon826/claude-fzf.nvim",
-		dir = "/home/dan/git_clones/claude-fzf.nvim",
-		dependencies = {
-			"ibhagwan/fzf-lua",
-			"coder/claudecode.nvim",
-		},
-		opts = {
-			auto_context = true,
-			batch_size = 10,
-		},
-		cmd = {
-			"ClaudeFzf",
-			"ClaudeFzfFiles",
-			"ClaudeFzfGrep",
-			"ClaudeFzfBuffers",
-			"ClaudeFzfGitFiles",
-			"ClaudeFzfDirectory",
-		},
-	},
+	-- {
+	-- 	"xeon826/claude-fzf.nvim",
+	-- 	dir = "/home/dan/git_clones/claude-fzf.nvim",
+	-- 	dependencies = {
+	-- 		"ibhagwan/fzf-lua",
+	-- 		"coder/claudecode.nvim",
+	-- 	},
+	-- 	opts = {
+	-- 		auto_context = true,
+	-- 		batch_size = 10,
+	-- 	},
+	-- 	cmd = {
+	-- 		"ClaudeFzf",
+	-- 		"ClaudeFzfFiles",
+	-- 		"ClaudeFzfGrep",
+	-- 		"ClaudeFzfBuffers",
+	-- 		"ClaudeFzfGitFiles",
+	-- 		"ClaudeFzfDirectory",
+	-- 	},
+	-- },
 	{
 		"coder/claudecode.nvim",
 		event = "VeryLazy",
