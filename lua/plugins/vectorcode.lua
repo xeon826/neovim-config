@@ -1,5 +1,6 @@
 return {
   "Davidyz/VectorCode",
+  enabled = false,
   version = "*",
   build = "/usr/bin/uv tool upgrade vectorcode", -- This helps keeping the CLI up-to-date
   -- build = "pipx upgrade vectorcode", -- If you used pipx to install the CLI

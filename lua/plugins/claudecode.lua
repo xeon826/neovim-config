@@ -52,7 +52,7 @@ return {
 			{ "<C-2>", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 		},
 		opts = {
-      terminal_cmd = "/usr/bin/claude",
+      terminal_cmd = "/usr/bin/qwen",
 			diff_opts = {
         open_in_current_tab = false,
 				keep_terminal_focus = true,
