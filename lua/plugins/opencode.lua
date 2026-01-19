@@ -1,5 +1,6 @@
 return {
-	"NickvanDyke/opencode.nvim",
+	"~/git_clones/proj/opencode.nvim",
+	dir = "~/git_clones/proj/opencode.nvim",
 	dependencies = {
 		-- Recommended for `ask()` and `select()`.
 		-- Required for `snacks` provider.
@@ -36,6 +37,12 @@ return {
 		vim.keymap.set({ "n", "x" }, "<C-a>", function()
 			require("opencode").ask("@this: ", { submit = true })
 		end, { desc = "Ask opencode…" })
+		vim.keymap.set("n", "<leader>ob", function()
+			require("opencode").ask("Explain @buffer: ", { submit = true })
+		end, { desc = "Ask about buffer" })
+		vim.keymap.set("n", "<leader>oB", function()
+			require("opencode").ask("Explain @buffers: ", { submit = true })
+		end, { desc = "Ask about buffers" })
 		vim.keymap.set({ "n", "x" }, "<C-x>", function()
 			require("opencode").select()
 		end, { desc = "Execute opencode action…" })
@@ -64,5 +71,11 @@ return {
 		vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { desc = "Move to bottom window" })
 		vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { desc = "Move to top window" })
 		vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Move to right window" })
+		vim.keymap.set("t", "<C-f>", function()
+			require("opencode").fzf.select_files()
+		end, opts)
+		vim.keymap.set("t", "<C-b>", function()
+			require("opencode").fzf.select_buffers()
+		end, opts)
 	end,
 }
