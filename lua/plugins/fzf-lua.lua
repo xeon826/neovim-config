@@ -3,26 +3,27 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			actions = {
-				files = {
-					-- Open all selected files, don't send to quickfix
-					["enter"] = require("fzf-lua.actions").file_edit,
+		config = function()
+			require("fzf-lua").setup({
+				actions = {
+					files = {
+						["enter"] = require("fzf-lua.actions").file_edit,
+					},
 				},
-			},
-			keymap = {
-				builtin = {
-					true,
-					["<C-/>"] = "focus-preview",
-					["<C-d>"] = "preview-page-down", -- Scroll preview down
-					["<C-u>"] = "preview-page-up", -- Scroll preview up
-					["<C-f>"] = "preview-page-left", -- Scroll preview left
-					["<C-k>"] = "preview-page-right", -- Scroll preview right
-					["<C-j>"] = "down", -- Move cursor down in results
-					["<C-k>"] = "up", -- Move cursor up in results
+				keymap = {
+					builtin = {
+						true,
+						["<C-/>"] = "focus-preview",
+						["<C-d>"] = "preview-page-down", -- Scroll preview down
+						["<C-u>"] = "preview-page-up", -- Scroll preview up
+						["<C-f>"] = "preview-page-left", -- Scroll preview left
+						["<C-k>"] = "preview-page-right", -- Scroll preview right
+						["<C-j>"] = "down", -- Move cursor down in results
+						["<C-k>"] = "up", -- Move cursor up in results
+					},
 				},
-			},
-		},
+			})
+		end,
 		keys = {
 			-- Buffers
 			{
