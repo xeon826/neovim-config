@@ -1,152 +1,57 @@
-local toggle_key = "<C-\\>"
--- Note: Changed from <C-,> to <C-\\> because <C-,> is not a valid terminal key
-
 return {
-	-- Claude FZF plugin configuration
-	-- {
-	-- 	"xeon826/claude-fzf.nvim",
-	-- 	dir = "/home/dan/git_clones/claude-fzf.nvim",
-	-- 	dependencies = {
-	-- 		"ibhagwan/fzf-lua",
-	-- 		"coder/claudecode.nvim",
-	-- 	},
-	-- 	opts = {
-	-- 		auto_context = true,
-	-- 		batch_size = 10,
-	-- 	},
-	-- 	cmd = {
-	-- 		"ClaudeFzf",
-	-- 		"ClaudeFzfFiles",
-	-- 		"ClaudeFzfGrep",
-	-- 		"ClaudeFzfBuffers",
-	-- 		"ClaudeFzfGitFiles",
-	-- 		"ClaudeFzfDirectory",
-	-- 	},
-	-- },
-	{
-		"coder/claudecode.nvim",
-		event = "VeryLazy",
-		dependencies = { "folke/snacks.nvim" },
-		keys = {
-			{ toggle_key, "<cmd>ClaudeCodeFocus<cr>", desc = "Claude Code", mode = { "n", "x", "t" } },
-			{ "<leader>a", nil, desc = "AI/Claude Code" },
-			{ "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-			{ "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-			{ "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-			{ "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-			{ "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-			{ "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-			{ "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-			{
-				"<leader>as",
-				"<cmd>ClaudeCodeTreeAdd<cr>",
-				desc = "Add file",
-				ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
-			},
-			-- Layout-specific keymaps
-			{ "<leader>av", "<cmd>ClaudeCode<cr>", desc = "Claude: Vertical split" },
-			-- Diff management
-			-- { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-			-- { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
-			{ "<C-1>", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-			{ "<C-2>", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
-		},
-		opts = {
-      terminal_cmd = "/usr/bin/qwen",
-			diff_opts = {
-        open_in_current_tab = false,
-				keep_terminal_focus = true,
-			},
-			terminal = {
-				provider = "snacks",
-				---@module "snacks"
-				---@type snacks.win.Config|{}
-				snacks_win_opts = {
-					position = "float",
-					height = 0.9,
-					width = 0.9999999,
-					keys = {
-						nav_left = {
-							"<C-h>",
-							function(self)
-								vim.cmd("wincmd h")
-							end,
-							mode = "t",
-							desc = "Nav to previous buffer",
-						},
-						nav_right = {
-							"<C-l>",
-							function(self)
-								vim.cmd("wincmd l")
-							end,
-							mode = "t",
-							desc = "Nav to previous buffer",
-						},
-						nav_down = {
-							"<C-j>",
-							function(self)
-								vim.cmd("wincmd j")
-							end,
-							mode = "t",
-							desc = "Nav to bottom buffer",
-						},
-						nav_up = {
-							"<C-k>",
-							function(self)
-								vim.cmd("wincmd k")
-							end,
-							mode = "t",
-							desc = "Nav to top buffer",
-						},
-						-- Claude FZF key mappings
-						claude_fzf_git_files = {
-							"<C-,>",
-							function()
-								vim.cmd("stopinsert")
-								vim.cmd("ClaudeFzfGitFiles")
-							end,
-							mode = "t",
-							desc = "Claude: Add Git files",
-						},
-						claude_fzf_files = {
-							"<C-f>",
-							function()
-								vim.cmd("stopinsert")
-								vim.cmd("ClaudeFzfFiles")
-							end,
-							mode = "t",
-							desc = "Claude: Add files",
-						},
-						-- claude_fzf_grep = {
-						-- 	"<leader>/",
-						-- 	function()
-						-- 		vim.cmd("stopinsert")
-						-- 		vim.cmd("ClaudeFzfGrep")
-						-- 	end,
-						-- 	mode = "t",
-						-- 	desc = "Claude: Search and add",
-						-- },
-						claude_fzf_buffers = {
-							"<C-b>",
-							function()
-								vim.cmd("stopinsert")
-								vim.cmd("ClaudeFzfBuffers")
-							end,
-							mode = "t",
-							desc = "Claude: Add buffers",
-						},
-						claude_fzf_directory = {
-							"<C-d>",
-							function()
-								vim.cmd("stopinsert")
-								vim.cmd("ClaudeFzfDirectory")
-							end,
-							mode = "t",
-							desc = "Claude: Add directory files",
-						},
-					},
+	"NickvanDyke/opencode.nvim",
+	dependencies = {
+		-- Recommended for `ask()` and `select()`.
+		-- Required for `snacks` provider.
+		---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
+		{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+	},
+	config = function()
+		---@type opencode.Opts
+		vim.g.opencode_opts = {
+			-- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
+			provider = {
+				enabled = "snacks",
+				snacks = {
+					-- ...
 				},
 			},
-		},
-	},
+		}
+
+		-- Required for `opts.events.reload`.
+		vim.o.autoread = true
+
+		-- Recommended/example keymaps.
+		vim.keymap.set({ "n", "x" }, "<C-a>", function()
+			require("opencode").ask("@this: ", { submit = true })
+		end, { desc = "Ask opencode…" })
+		vim.keymap.set({ "n", "x" }, "<C-x>", function()
+			require("opencode").select()
+		end, { desc = "Execute opencode action…" })
+		vim.keymap.set({ "n", "t" }, "<C-\\>", function()
+			require("opencode").toggle()
+		end, { desc = "Toggle opencode" })
+
+		vim.keymap.set({ "n", "x" }, "go", function()
+			return require("opencode").operator("@this ")
+		end, { desc = "Add range to opencode", expr = true })
+		vim.keymap.set("n", "goo", function()
+			return require("opencode").operator("@this ") .. "_"
+		end, { desc = "Add line to opencode", expr = true })
+
+		vim.keymap.set("n", "<S-C-u>", function()
+			require("opencode").command("session.half.page.up")
+		end, { desc = "Scroll opencode up" })
+		vim.keymap.set("n", "<S-C-d>", function()
+			require("opencode").command("session.half.page.down")
+		end, { desc = "Scroll opencode down" })
+
+		-- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o…".
+		vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+		vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+		vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { desc = "Move to left window" })
+		vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { desc = "Move to bottom window" })
+		vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { desc = "Move to top window" })
+		vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Move to right window" })
+	end,
 }
