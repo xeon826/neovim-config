@@ -1,6 +1,9 @@
 return {
-	"~/git_clones/proj/opencode.nvim",
-	dir = "~/git_clones/proj/opencode.nvim",
+	"xeon826/opencode.nvim",
+  name = 'opencode',
+  dev = {true},
+	-- "~/git_clones/proj/opencode.nvim",
+	-- dir = "~/git_clones/proj/opencode.nvim",
 	dependencies = {
 		-- Recommended for `ask()` and `select()`.
 		-- Required for `snacks` provider.
@@ -67,15 +70,18 @@ return {
 		-- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o…".
 		vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
 		vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
-		vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { desc = "Move to left window" })
-		vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { desc = "Move to bottom window" })
-		vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { desc = "Move to top window" })
-		vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Move to right window" })
-		vim.keymap.set("t", "<C-f>", function()
-			require("opencode").fzf.select_files()
-		end, opts)
-		vim.keymap.set("t", "<C-b>", function()
-			require("opencode").fzf.select_buffers()
-		end, opts)
+
+		local opts = { buffer = true, desc = "Opencode terminal keymap" }
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "opencode_terminal",
+			callback = function()
+				vim.keymap.set("t", "<C-f>", function()
+					require("opencode").fzf.select_files()
+				end, opts)
+				vim.keymap.set("t", "<C-b>", function()
+					require("opencode").fzf.select_buffers()
+				end, opts)
+			end,
+		})
 	end,
 }

@@ -17,7 +17,7 @@ return {
 						["<C-d>"] = "preview-page-down", -- Scroll preview down
 						["<C-u>"] = "preview-page-up", -- Scroll preview up
 						["<C-f>"] = "preview-page-left", -- Scroll preview left
-						["<C-k>"] = "preview-page-right", -- Scroll preview right
+						["<C-l>"] = "preview-page-right", -- Scroll preview right
 						["<C-j>"] = "down", -- Move cursor down in results
 						["<C-k>"] = "up", -- Move cursor up in results
 					},
