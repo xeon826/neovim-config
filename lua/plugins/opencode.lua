@@ -1,14 +1,38 @@
 return {
-	"xeon826/opencode.nvim",
-  name = 'opencode',
-  dev = {true},
-	-- "~/git_clones/proj/opencode.nvim",
-	-- dir = "~/git_clones/proj/opencode.nvim",
+	-- "xeon826/opencode.nvim",
+ --  name = 'opencode',
+ --  dev = {true},
+	"~/git_clones/proj/opencode.nvim",
+	dev = true,
+	dir = "~/git_clones/proj/opencode.nvim",
 	dependencies = {
 		-- Recommended for `ask()` and `select()`.
 		-- Required for `snacks` provider.
 		---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-		{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+		{ 
+			"folke/snacks.nvim", 
+			opts = { 
+				input = {}, 
+				picker = {
+					actions = {
+						opencode_send = function(...)
+							return require("opencode.cli.picker.snacks").send(...)
+						end,
+					},
+					win = {
+						input = {
+							keys = {
+								["<C-o>"] = {
+									"opencode_send",
+									mode = { "n", "i" },
+								},
+							},
+						},
+					},
+				},
+				terminal = {} 
+			} 
+		},
 	},
 	config = function()
 		---@type opencode.Opts
@@ -60,12 +84,10 @@ return {
 			return require("opencode").operator("@this ") .. "_"
 		end, { desc = "Add line to opencode", expr = true })
 
-		vim.keymap.set("n", "<S-C-u>", function()
-			require("opencode").command("session.half.page.up")
-		end, { desc = "Scroll opencode up" })
-		vim.keymap.set("n", "<S-C-d>", function()
-			require("opencode").command("session.half.page.down")
-		end, { desc = "Scroll opencode down" })
+		-- Snacks picker integration keymap
+		vim.keymap.set("n", "<leader>op", function()
+			require("opencode.cli.picker").open("files")
+		end, { desc = "Open opencode picker" })
 
 		-- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o…".
 		vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
@@ -75,6 +97,12 @@ return {
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "opencode_terminal",
 			callback = function()
+				vim.keymap.set("t", "<C-u>", function()
+					require("opencode").command("session.half.page.up")
+				end, opts)
+				vim.keymap.set("t", "<C-d>", function()
+					require("opencode").command("session.half.page.down")
+				end, opts)
 				vim.keymap.set("t", "<C-f>", function()
 					require("opencode").fzf.select_files()
 				end, opts)
