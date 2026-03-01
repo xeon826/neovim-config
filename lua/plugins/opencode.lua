@@ -5,6 +5,7 @@ return {
 	"~/git_clones/proj/opencode.nvim",
 	dev = true,
 	dir = "~/git_clones/proj/opencode.nvim",
+  enabled = false,
 	dependencies = {
 		-- Recommended for `ask()` and `select()`.
 		-- Required for `snacks` provider.
