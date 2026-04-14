@@ -172,6 +172,7 @@ return {
 				"markdown",
 				"markdown.mdx",
 				"json",
+				"jsonc",
 				"yaml",
 				"xml",
 				"svg",

@@ -117,7 +117,7 @@ return {{
             vim.keymap.set('n', '<C-b>', api.tree.change_root_to_parent, opts_fn('Up directory'))
             vim.keymap.set('n', '<C-v>', api.node.open.vertical, opts_fn('Open: Vertical Split'))
             vim.keymap.set('n', '<C-x>', api.node.open.horizontal, opts_fn('Open: Horizontal Split'))
-            vim.keymap.set('n', '<C-t>', api.node.open.tab, opts_fn('Open: New Tab'))
+            -- vim.keymap.set('n', '<C-t>', api.node.open.tab, opts_fn('Open: New Tab'))
             vim.keymap.set('n', '<C-k>', api.node.show_info_popup, opts_fn('Info'))
             vim.keymap.set('n', 'R', api.tree.reload, opts_fn('Refresh'))
             vim.keymap.set('n', 'a', api.fs.create, opts_fn('Create'))
