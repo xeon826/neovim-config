@@ -82,6 +82,7 @@ autocmd("Filetype", {
 	end,
 })
 
+
 autocmd("LspAttach", {
 	callback = function()
 		vim.diagnostic.config({ virtual_text = true, virtual_lines = false })

@@ -1,29 +1,40 @@
 -- ["enter"] = require("fzf-lua.actions").file_edit,
-return {
-	{
-		"ibhagwan/fzf-lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("fzf-lua").setup({
-				actions = {
-					files = {
-						["enter"] = require("fzf-lua.actions").file_edit,
+	return {
+		{
+			"ibhagwan/fzf-lua",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			config = function()
+				require("fzf-lua").setup({
+					actions = {
+						files = {
+							["enter"] = require("fzf-lua.actions").file_edit,
+						},
 					},
-				},
-				keymap = {
-					builtin = {
-						true,
-						["<C-/>"] = "focus-preview",
-						["<C-d>"] = "preview-page-down", -- Scroll preview down
-						["<C-u>"] = "preview-page-up", -- Scroll preview up
-						["<C-f>"] = "preview-page-left", -- Scroll preview left
-						["<C-l>"] = "preview-page-right", -- Scroll preview right
-						["<C-j>"] = "down", -- Move cursor down in results
-						["<C-k>"] = "up", -- Move cursor up in results
+					keymap = {
+						builtin = {
+							true,
+							["<C-/>"] = "focus-preview",
+							["<C-d>"] = "preview-page-down", -- Scroll preview down
+							["<C-u>"] = "preview-page-up", -- Scroll preview up
+							["<C-f>"] = "preview-page-left", -- Scroll preview left
+							["<C-l>"] = "preview-page-right", -- Scroll preview right
+							["<C-j>"] = "down", -- Move cursor down in results
+							["<C-k>"] = "up", -- Move cursor up in results
+						},
 					},
-				},
-			})
-		end,
+					hls = {
+						cursorline = "Visual",
+						cursorline_column = "Visual",
+					},
+				})
+
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = "fzf",
+					callback = function()
+						vim.cmd("TSBufDisable highlight")
+					end,
+				})
+			end,
 		keys = {
 			-- Buffers
 			{
