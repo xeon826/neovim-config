@@ -10,6 +10,8 @@
 							["enter"] = require("fzf-lua.actions").file_edit,
 						},
 					},
+					file_ignore_patterns = {
+					},
 					keymap = {
 						builtin = {
 							true,
