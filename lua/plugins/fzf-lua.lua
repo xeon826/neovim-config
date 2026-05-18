@@ -33,7 +33,7 @@
 				vim.api.nvim_create_autocmd("FileType", {
 					pattern = "fzf",
 					callback = function()
-						vim.cmd("TSBufDisable highlight")
+						vim.treesitter.stop()
 					end,
 				})
 			end,

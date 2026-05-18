@@ -88,7 +88,7 @@ require("lazy").setup({
     state = vim.fn.stdpath("state") .. "/lazy/state.json" -- state info for checker and other things
 })
 
-local modules = {"config.autocmds", "config.options", "config.keymaps", "config.highlights", "config.custom"}
+local modules = {"config.treesitter", "config.autocmds", "config.options", "config.keymaps", "config.highlights", "config.custom"}
 
 for _, mod in ipairs(modules) do
     local ok, err = pcall(require, mod)

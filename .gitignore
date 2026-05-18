@@ -1,2 +1,6 @@
 .serena
 .claude/skills/claudish-usage
+
+# Tree-sitter queries copied from nvim-treesitter/runtime/queries
+# (after/queries/ contains custom overrides and is NOT ignored)
+/queries/

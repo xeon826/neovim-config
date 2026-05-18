@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"mfussenegger/nvim-dap",
 		-- optional, for test runner features:
-		{ "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "python" } } },
 	},
 	ft = "python",
 	config = function()
